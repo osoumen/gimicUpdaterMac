@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
+        <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
@@ -14,7 +14,9 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
-                <outlet property="dbgPrint" destination="B6e-Nc-bia" id="o7m-kl-BQW"/>
+                <outlet property="mMessageView" destination="B6e-Nc-bia" id="l4H-Mf-b4f"/>
+                <outlet property="mProgressBar" destination="1wr-Go-WGy" id="I4Z-0D-eZb"/>
+                <outlet property="mStartButton" destination="wHv-Zh-Fb0" id="N2C-B3-E8Z"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -69,14 +71,10 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="File" id="bib-Uj-vzu">
                         <items>
-                            <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
+                            <menuItem title="New" enabled="NO" keyEquivalent="n" id="Was-JA-tGl"/>
+                            <menuItem title="Open Hex…" keyEquivalent="o" id="IAo-SY-fd9">
                                 <connections>
-                                    <action selector="newDocument:" target="-1" id="4Si-XN-c54"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
-                                <connections>
-                                    <action selector="openDocument:" target="-1" id="bVn-NM-KNZ"/>
+                                    <action selector="onSelectOpen:" target="-1" id="fdI-Yc-hLw"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Open Recent" id="tXI-mr-wws">
@@ -93,35 +91,31 @@
                                 </menu>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
-                            <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
-                                <connections>
-                                    <action selector="performClose:" target="-1" id="HmO-Ls-i7Q"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Save…" keyEquivalent="s" id="pxx-59-PXV">
+                            <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG"/>
+                            <menuItem title="Save…" enabled="NO" keyEquivalent="s" id="pxx-59-PXV">
                                 <connections>
                                     <action selector="saveDocument:" target="-1" id="teZ-XB-qJY"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Save As…" keyEquivalent="S" id="Bw7-FT-i3A">
+                            <menuItem title="Save As…" enabled="NO" keyEquivalent="S" id="Bw7-FT-i3A">
                                 <connections>
                                     <action selector="saveDocumentAs:" target="-1" id="mDf-zr-I0C"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Revert to Saved" id="KaW-ft-85H">
+                            <menuItem title="Revert to Saved" enabled="NO" id="KaW-ft-85H">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="revertDocumentToSaved:" target="-1" id="iJ3-Pv-kwq"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="aJh-i4-bef"/>
-                            <menuItem title="Page Setup…" keyEquivalent="P" id="qIS-W8-SiK">
+                            <menuItem title="Page Setup…" enabled="NO" keyEquivalent="P" id="qIS-W8-SiK">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                 <connections>
                                     <action selector="runPageLayout:" target="-1" id="Din-rz-gC5"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Print…" keyEquivalent="p" id="aTl-1u-JFS">
+                            <menuItem title="Print…" enabled="NO" keyEquivalent="p" id="aTl-1u-JFS">
                                 <connections>
                                     <action selector="print:" target="-1" id="qaZ-4w-aoO"/>
                                 </connections>
@@ -629,6 +623,37 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Debug" id="k6x-bA-pPx">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Debug" id="33T-Dr-7gU">
+                        <items>
+                            <menuItem title="Show Log" alternate="YES" id="LEf-ZZ-rVg">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleShowLog:" target="-1" id="f0R-ez-81J"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Full Debug" id="2Wd-p9-cUY">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleFullDebug:" target="-1" id="3HE-Er-15j"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="No Verify" id="ljV-d7-t8g">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleNoVerify:" target="-1" id="Dbo-D4-GEv"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Erase Before Upload" id="jxI-eI-cxA">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleEraseBeforeUpload:" target="-1" id="lZv-Zf-FRN"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="Window" id="aUF-d1-5bR">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
@@ -668,19 +693,19 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="GIMICUpdater" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+        <window title="GIMICUpdater" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
+            <rect key="contentRect" x="120" y="300" width="480" height="360"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1366" height="746"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wHv-Zh-Fb0">
-                        <rect key="frame" x="207" y="42" width="66" height="32"/>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wHv-Zh-Fb0">
+                        <rect key="frame" x="168" y="51" width="144" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="開始" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NK0-hT-oVu">
+                        <buttonCell key="cell" type="push" title="アップデート開始" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NK0-hT-oVu">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="AquaKana"/>
                         </buttonCell>
@@ -688,21 +713,21 @@
                             <action selector="start:" target="-1" id="29z-uc-pbM"/>
                         </connections>
                     </button>
-                    <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWq-W9-ZI7">
-                        <rect key="frame" x="20" y="90" width="440" height="196"/>
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWq-W9-ZI7">
+                        <rect key="frame" x="20" y="99" width="440" height="241"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="875-Rb-I1J">
-                            <rect key="frame" x="1" y="1" width="423" height="194"/>
+                        <clipView key="contentView" id="875-Rb-I1J">
+                            <rect key="frame" x="1" y="1" width="423" height="239"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView ambiguous="YES" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="B6e-Nc-bia">
-                                    <rect key="frame" x="0.0" y="0.0" width="423" height="194"/>
+                                <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="B6e-Nc-bia">
+                                    <rect key="frame" x="0.0" y="0.0" width="423" height="239"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="423" height="194"/>
+                                    <size key="minSize" width="423" height="239"/>
                                     <size key="maxSize" width="463" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="423" height="194"/>
+                                    <size key="minSize" width="423" height="239"/>
                                     <size key="maxSize" width="463" height="10000000"/>
                                 </textView>
                             </subviews>
@@ -713,11 +738,26 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="6xz-XJ-vSA">
-                            <rect key="frame" x="424" y="1" width="15" height="194"/>
+                            <rect key="frame" x="424" y="1" width="15" height="239"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <progressIndicator displayedWhenStopped="NO" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="1wr-Go-WGy">
+                        <rect key="frame" x="20" y="19" width="440" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </progressIndicator>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="XWq-W9-ZI7" firstAttribute="trailing" secondItem="1wr-Go-WGy" secondAttribute="trailing" id="04x-xU-hcH"/>
+                    <constraint firstItem="1wr-Go-WGy" firstAttribute="centerX" secondItem="wHv-Zh-Fb0" secondAttribute="centerX" id="6du-zy-g3D"/>
+                    <constraint firstAttribute="bottom" secondItem="1wr-Go-WGy" secondAttribute="bottom" constant="20" symbolic="YES" id="75o-F0-cnE"/>
+                    <constraint firstItem="XWq-W9-ZI7" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" symbolic="YES" id="CxP-hX-SJl"/>
+                    <constraint firstItem="1wr-Go-WGy" firstAttribute="leading" secondItem="XWq-W9-ZI7" secondAttribute="leading" id="FQe-zO-mvN"/>
+                    <constraint firstAttribute="trailing" secondItem="XWq-W9-ZI7" secondAttribute="trailing" constant="20" symbolic="YES" id="KyB-hL-xc3"/>
+                    <constraint firstItem="wHv-Zh-Fb0" firstAttribute="top" secondItem="XWq-W9-ZI7" secondAttribute="bottom" constant="20" symbolic="YES" id="LyB-HN-eUn"/>
+                    <constraint firstItem="1wr-Go-WGy" firstAttribute="top" secondItem="wHv-Zh-Fb0" secondAttribute="bottom" constant="20" symbolic="YES" id="P9f-Oj-Dg3"/>
+                    <constraint firstItem="XWq-W9-ZI7" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="hfc-G9-JSU"/>
+                </constraints>
             </view>
         </window>
     </objects>

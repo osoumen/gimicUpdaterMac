@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  GIMICUpdater
+
+  Created by osoumen on 2014/10/06.
+  Copyright (c) 2014年 osoumen. All rights reserved.
+*/
+
+"yes" = "はい";
+"no" = "いいえ";
+
+"portPath" = "/dev/cu.SLAB_USBtoUART";
+
+"hexPath_mb1" = "gimic-mb1.hex";
+"hexPath_mb2" = "gimic-mb2.hex";
+
+"preparingToUpdate" = "MB1をアップデートする場合は、USBポート側から見て基板上のスイッチを左側に切り替え、右側のUSBポートにケーブルを接続してください。\nMB2をアップデートする場合は、ON/OFFボタンを押しながらUSBケーブルを接続してください。";
+"readyToUpdate1" = "GIMICを以下のファームウェアに更新します。\n";
+"readyToUpdate2" = "\n開始するには「アップデート開始」をクリックしてください。";
+"updating" = "アップデートを行っています。完了するまでUSBケーブルを抜かないでください。\n";
+"endUpdate" = "アップデートが完了しました。";
+
+"cancelUpdating1" = "アップデート処理をキャンセルして終了しますか？";
+"cancelUpdating2" = "途中で終了した場合、再度アップデートを行うまでGIMICは正常に動作出来なくなります。";
+
+"exception1" = "アップデートが中断されました。";
+"exception2" = "アップデートを再度実行してください。";

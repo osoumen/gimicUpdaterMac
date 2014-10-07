@@ -9,5 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface DownloadOperation : NSOperation
+{
+    NSURL       *mHexFilePath;
+    NSString    *mPortPath;
+}
+@property BOOL        fullDebug;
+@property BOOL        noVerify;
+@property BOOL        eraseBeforeUpload;
+
+- (void)setHexFilePath:(NSURL*)path;
+- (void)setPortPath:(NSString*)path;
 
 @end

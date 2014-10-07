@@ -9,27 +9,91 @@
 #import "DownloadOperation.h"
 #include "lpc21isp.h"
 
+void EndWrite();
+
 @implementation DownloadOperation
+
+- (id)init
+{
+    self = [super init];
+    mHexFilePath = nil;
+    mPortPath = nil;
+    return self;
+}
+
+- (void)setHexFilePath:(NSURL*)path
+{
+    mHexFilePath = path;
+}
+
+- (void)setPortPath:(NSString*)path
+{
+    mPortPath = path;
+}
 
 - (void)main
 {
-    char params[][256] = {
-        "lpc21isp",
-        "-hex",
-        "/Users/osoumen/gimicUpdater/gimic.hex",
-        "/dev/cu.SLAB_USBtoUART",
-        "230400",
-        "72000"
-    };
-    char *arguments[6] = {
-        params[0],
-        params[1],
-        params[2],
-        params[3],
-        params[4],
-        params[5],
-    };
-    AppDoProgram(6, arguments);
+    if (mPortPath == nil) {
+        return;
+    }
+    if (mHexFilePath == nil) {
+        return;
+    }
+    
+    @autoreleasepool {
+        int numArgs = 1;
+        char params[9][1024];
+        char *arguments[9] = {
+            params[0],
+            params[1],
+            params[2],
+            params[3],
+            params[4],
+            params[5],
+            params[6],
+            params[7],
+            params[8]
+        };
+        
+        arguments[0] = 0;
+        
+        if (self.fullDebug) {
+            strcpy(arguments[numArgs], "-debug5");
+            numArgs++;
+        }
+        if (self.noVerify == NO) {
+            strcpy(arguments[numArgs], "-verify");
+            numArgs++;
+        }
+        if (self.eraseBeforeUpload) {
+            strcpy(arguments[numArgs], "-wipe");
+            numArgs++;
+        }
+        
+        strcpy(arguments[numArgs], "-hex");
+        numArgs++;
+        
+        if ([mHexFilePath isFileURL]) {
+            [[[mHexFilePath filePathURL] path]
+             getFileSystemRepresentation:params[numArgs] maxLength:1024];
+        }
+        else {
+            [[mHexFilePath absoluteString]
+             getFileSystemRepresentation:params[numArgs] maxLength:1024];
+        }
+        numArgs++;
+        
+        [mPortPath getCString:params[numArgs] maxLength:1024 encoding:NSUTF8StringEncoding];
+        numArgs++;
+        
+        strcpy(arguments[numArgs], "230400");
+        numArgs++;
+        strcpy(arguments[numArgs], "72000");
+        numArgs++;
+
+        int ret = AppDoProgram(numArgs, arguments);
+        EndWrite(ret);
+    }
 }
 
 @end

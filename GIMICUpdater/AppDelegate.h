@@ -10,12 +10,33 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
-    IBOutlet NSTextView *dbgPrint;
-    NSOperationQueue *gQueue;
+    IBOutlet NSTextView             *mMessageView;
+    NSOperationQueue                *gQueue;
+    IBOutlet NSProgressIndicator    *mProgressBar;
+    IBOutlet NSButton               *mStartButton;
+    
+    BOOL                            isFinished;     // 書き換えを完了したらYESになる
+    BOOL                            isReady;
+    BOOL                            isUpdating;
+    
+    NSString                        *portPath;      // VCPポートのパス
+    NSURL                           *hexPath;       // ファームウェアのパス
+    BOOL                            showLog;
+    BOOL                            fullDebug;
+    BOOL                            noVerify;
+    BOOL                            eraseBeforeUpload;
 }
 @property (assign) IBOutlet NSWindow *window;
+@property BOOL                       showLog;
+@property BOOL                       fullDebug;
+@property (readonly) BOOL            isUpdating;
 
-- (void)start:(id)sender;
-- (void)appendMsg:(NSString*)msg;
+- (IBAction)start:(id)sender;
+- (IBAction)onSelectOpen:(id)sender;
+
+- (IBAction)toggleShowLog:(id)sender;
+- (IBAction)toggleFullDebug:(id)sender;
+- (IBAction)toggleNoVerify:(id)sender;
+- (IBAction)toggleEraseBeforeUpload:(id)sender;
 
 @end

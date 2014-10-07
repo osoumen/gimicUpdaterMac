@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F51A5ACA19E2C67D00F4A6C0 /* PortChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = F51A5AC919E2C67D00F4A6C0 /* PortChecker.m */; };
+		F51A5ACD19E2DE9600F4A6C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51A5ACB19E2DE9600F4A6C0 /* Localizable.strings */; };
+		F51A5AD119E2FACC00F4A6C0 /* gimic-mb2.hex in Resources */ = {isa = PBXBuildFile; fileRef = F51A5AD019E2FAC100F4A6C0 /* gimic-mb2.hex */; };
+		F51A5AD319E2FB5600F4A6C0 /* gimic-mb1.hex in Resources */ = {isa = PBXBuildFile; fileRef = F51A5AD219E2FB4F00F4A6C0 /* gimic-mb1.hex */; };
 		F527A53F19DDA9AA002DFE7C /* DownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F527A53E19DDA9AA002DFE7C /* DownloadOperation.m */; };
 		F5670C5019DD8D7300FA3D79 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5670C4F19DD8D7300FA3D79 /* Cocoa.framework */; };
 		F5670C5A19DD8D7300FA3D79 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5670C5819DD8D7300FA3D79 /* InfoPlist.strings */; };
@@ -15,13 +19,18 @@
 		F5670C6319DD8D7300FA3D79 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F5670C6219DD8D7300FA3D79 /* AppDelegate.m */; };
 		F5670C6619DD8D7300FA3D79 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5670C6419DD8D7300FA3D79 /* MainMenu.xib */; };
 		F5670C6819DD8D7300FA3D79 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5670C6719DD8D7300FA3D79 /* Images.xcassets */; };
-		F5670C8C19DD90DD00FA3D79 /* adprog.c in Sources */ = {isa = PBXBuildFile; fileRef = F5670C8419DD90DD00FA3D79 /* adprog.c */; };
-		F5670C8D19DD90DD00FA3D79 /* lpc21isp.c in Sources */ = {isa = PBXBuildFile; fileRef = F5670C8619DD90DD00FA3D79 /* lpc21isp.c */; };
-		F5670C8E19DD90DD00FA3D79 /* lpcprog.c in Sources */ = {isa = PBXBuildFile; fileRef = F5670C8819DD90DD00FA3D79 /* lpcprog.c */; };
-		F5670C8F19DD90DD00FA3D79 /* lpcterm.c in Sources */ = {isa = PBXBuildFile; fileRef = F5670C8A19DD90DD00FA3D79 /* lpcterm.c */; };
+		F5670C8C19DD90DD00FA3D79 /* adprog.c in Sources */ = {isa = PBXBuildFile; fileRef = F5670C8419DD90DD00FA3D79 /* adprog.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F5670C8D19DD90DD00FA3D79 /* lpc21isp.c in Sources */ = {isa = PBXBuildFile; fileRef = F5670C8619DD90DD00FA3D79 /* lpc21isp.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F5670C8E19DD90DD00FA3D79 /* lpcprog.c in Sources */ = {isa = PBXBuildFile; fileRef = F5670C8819DD90DD00FA3D79 /* lpcprog.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F5670C8F19DD90DD00FA3D79 /* lpcterm.c in Sources */ = {isa = PBXBuildFile; fileRef = F5670C8A19DD90DD00FA3D79 /* lpcterm.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F51A5AC819E2C67D00F4A6C0 /* PortChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortChecker.h; sourceTree = "<group>"; };
+		F51A5AC919E2C67D00F4A6C0 /* PortChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortChecker.m; sourceTree = "<group>"; };
+		F51A5ACF19E2DEC100F4A6C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F51A5AD019E2FAC100F4A6C0 /* gimic-mb2.hex */ = {isa = PBXFileReference; lastKnownFileType = text; path = "gimic-mb2.hex"; sourceTree = "<group>"; };
+		F51A5AD219E2FB4F00F4A6C0 /* gimic-mb1.hex */ = {isa = PBXFileReference; lastKnownFileType = text; path = "gimic-mb1.hex"; sourceTree = "<group>"; };
 		F527A53D19DDA9AA002DFE7C /* DownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadOperation.h; sourceTree = "<group>"; };
 		F527A53E19DDA9AA002DFE7C /* DownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadOperation.m; sourceTree = "<group>"; };
 		F5670C4C19DD8D7300FA3D79 /* GIMICUpdater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIMICUpdater.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,8 +109,13 @@
 		F5670C5519DD8D7300FA3D79 /* GIMICUpdater */ = {
 			isa = PBXGroup;
 			children = (
+				F51A5AD219E2FB4F00F4A6C0 /* gimic-mb1.hex */,
+				F51A5AD019E2FAC100F4A6C0 /* gimic-mb2.hex */,
 				F5670C6119DD8D7300FA3D79 /* AppDelegate.h */,
 				F5670C6219DD8D7300FA3D79 /* AppDelegate.m */,
+				F51A5ACB19E2DE9600F4A6C0 /* Localizable.strings */,
+				F51A5AC819E2C67D00F4A6C0 /* PortChecker.h */,
+				F51A5AC919E2C67D00F4A6C0 /* PortChecker.m */,
 				F527A53D19DDA9AA002DFE7C /* DownloadOperation.h */,
 				F527A53E19DDA9AA002DFE7C /* DownloadOperation.m */,
 				F5670C6419DD8D7300FA3D79 /* MainMenu.xib */,
@@ -190,6 +204,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F51A5AD319E2FB5600F4A6C0 /* gimic-mb1.hex in Resources */,
+				F51A5AD119E2FACC00F4A6C0 /* gimic-mb2.hex in Resources */,
+				F51A5ACD19E2DE9600F4A6C0 /* Localizable.strings in Resources */,
 				F5670C5A19DD8D7300FA3D79 /* InfoPlist.strings in Resources */,
 				F5670C6819DD8D7300FA3D79 /* Images.xcassets in Resources */,
 				F5670C6019DD8D7300FA3D79 /* Credits.rtf in Resources */,
@@ -206,6 +223,7 @@
 			files = (
 				F527A53F19DDA9AA002DFE7C /* DownloadOperation.m in Sources */,
 				F5670C6319DD8D7300FA3D79 /* AppDelegate.m in Sources */,
+				F51A5ACA19E2C67D00F4A6C0 /* PortChecker.m in Sources */,
 				F5670C8F19DD90DD00FA3D79 /* lpcterm.c in Sources */,
 				F5670C8D19DD90DD00FA3D79 /* lpc21isp.c in Sources */,
 				F5670C8C19DD90DD00FA3D79 /* adprog.c in Sources */,
@@ -217,6 +235,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		F51A5ACB19E2DE9600F4A6C0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F51A5ACF19E2DEC100F4A6C0 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		F5670C5819DD8D7300FA3D79 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -326,7 +352,9 @@
 		F5670C7E19DD8D7300FA3D79 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GIMICUpdater/GIMICUpdater-Prefix.pch";
@@ -340,7 +368,9 @@
 		F5670C7F19DD8D7300FA3D79 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GIMICUpdater/GIMICUpdater-Prefix.pch";
