@@ -17,6 +17,7 @@ AppDelegate *app = nil;
 @synthesize showLog;
 @synthesize fullDebug;
 @synthesize isUpdating;
+@synthesize isSyncFailed;
 
 - (void)awakeFromNib
 {
@@ -270,9 +271,12 @@ AppDelegate *app = nil;
     
     [self printMessage:NSLocalizedString(@"updating", @"")];
     [mStartButton setEnabled:NO];
-    isReady = NO;
     [_window setStyleMask:[_window styleMask] & ~NSClosableWindowMask];
+    [mProgressBar setIndeterminate:YES];
+    [mProgressBar startAnimation:self];
+    isReady = NO;
     isUpdating = YES;
+    isSyncFailed = NO;
     DownloadOperation *tOperation = [[DownloadOperation alloc] init];
     [tOperation setHexFilePath:hexPath];
     [tOperation setPortPath:portPath];
@@ -306,14 +310,27 @@ AppDelegate *app = nil;
 - (void)writtenBytes:(NSNumber*)written
 {
     [mProgressBar incrementBy:[written intValue]];
+    if ([mProgressBar doubleValue] > 0) {
+        [mProgressBar setIndeterminate:NO];
+    }
 }
 
 - (void)endWrite:(NSNumber*)returnCode
 {
-    isFinished = YES;
     isUpdating = NO;
     [self.window setStyleMask:[self.window styleMask] | NSClosableWindowMask];
-    [self putMsg:NSLocalizedString(@"endUpdate", @"")];
+    if (isSyncFailed) {
+        NSRunAlertPanel(NSLocalizedString(@"syncFail1",@""),
+                        NSLocalizedString(@"syncFail2",@""),
+                        NSLocalizedString(@"OK",@""),nil,nil);
+        [self printUpdateReadyMsg];
+        [mStartButton setEnabled:YES];
+    }
+    else {
+        isFinished = YES;
+        [self putMsg:NSLocalizedString(@"endUpdate", @"")];
+    }
+    [mProgressBar stopAnimation:self];
 }
 
 - (void)notifyException:(id)sel
@@ -365,14 +382,14 @@ int AppSyncing(int trials)
 {
     // 同期処理
     if (app.isUpdating) {
-        return 1;
-    }
-    else {
-        if (trials > 10) {
-            [NSThread exit];
+        if (trials < 10) {
+            return 1;
         }
-        return 0;
+        else {
+            app.isSyncFailed = YES;
+        }
     }
+    return 0;
 }
 
 void AppWritten(int size)

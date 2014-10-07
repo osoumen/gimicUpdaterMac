@@ -18,6 +18,7 @@
     BOOL                            isFinished;     // 書き換えを完了したらYESになる
     BOOL                            isReady;
     BOOL                            isUpdating;
+    BOOL                            isSyncFailed;
     
     NSString                        *portPath;      // VCPポートのパス
     NSURL                           *hexPath;       // ファームウェアのパス
@@ -30,6 +31,7 @@
 @property BOOL                       showLog;
 @property BOOL                       fullDebug;
 @property (readonly) BOOL            isUpdating;
+@property BOOL                       isSyncFailed;
 
 - (IBAction)start:(id)sender;
 - (IBAction)onSelectOpen:(id)sender;
