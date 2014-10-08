@@ -59,15 +59,35 @@ AppDelegate *app = nil;
 - (void)loadDefaultHexPath:(int)mbType
 {
     NSBundle *bundle = [NSBundle mainBundle];
+    NSArray *paths = [bundle pathsForResourcesOfType:@"hex"
+                                         inDirectory:nil];
+    NSURL *mb1FWPath = nil;
+    NSURL *mb2FWPath = nil;
+    
+    for (int i=0; i<[paths count]; i++) {
+        NSString *fwpath = [paths objectAtIndex:i];
+        NSRange result = [fwpath rangeOfString:@"MB1"];
+        if (result.location != NSNotFound) {
+            if (mb1FWPath == nil) {
+                mb1FWPath = [NSURL URLWithString:fwpath
+                                   relativeToURL:nil];
+            }
+        }
+        result = [fwpath rangeOfString:@"MB2"];
+        if (result.location != NSNotFound) {
+            if (mb2FWPath == nil) {
+                mb2FWPath = [NSURL URLWithString:fwpath
+                                   relativeToURL:nil];
+            }
+        }
+    }
     
     switch (mbType) {
         case 0:
-            hexPath = [NSURL URLWithString:NSLocalizedString(@"hexPath_mb1", @"")
-                             relativeToURL:[bundle resourceURL]];
+            hexPath = mb1FWPath;
             break;
         case 1:
-            hexPath = [NSURL URLWithString:NSLocalizedString(@"hexPath_mb2", @"")
-                             relativeToURL:[bundle resourceURL]];
+            hexPath = mb2FWPath;
             break;
     }
 }
