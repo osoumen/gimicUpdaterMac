@@ -40,16 +40,16 @@ static void transaction(ISP_ENVIRONMENT *IspEnvironment, const char *send, char 
     @autoreleasepool {
 
         // ポートが存在するかチェック
-        while ([self checkPortExist] == NO) {
-            usleep(100000);
+        do {
+            while ([self checkPortExist] == NO) {
+                usleep(100000);
+            }
+            
+            // アップデートモードであるかチェック
+            // MB1かMB2かをチェック
         }
-        
-        // TODO: アップデートモードであるかチェック
-        // TODO: MB1かMB2かをチェック
-        while ([self checkConnection] == NO) {
-            usleep(100000);
-        }
-        
+        while ([self checkConnection] == NO);
+            
         // アップデートが可能になったことを通知
         NSNotificationCenter    *center;
         center = [NSNotificationCenter defaultCenter];
@@ -105,8 +105,6 @@ static void transaction(ISP_ENVIRONMENT *IspEnvironment, const char *send, char 
     IspEnvironment.fdCom = fdCom;
     ResetTarget(&IspEnvironment, PROGRAM_MODE);
     ClearSerialPortBuffers(&IspEnvironment);
-    
-    SendComPort(&IspEnvironment, "?");
     
     if (!transactionAndMatch(&IspEnvironment, "?", "Synchronized", 100)) {
         goto closeexit;
