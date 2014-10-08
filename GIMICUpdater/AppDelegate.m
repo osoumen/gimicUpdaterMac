@@ -30,6 +30,8 @@ AppDelegate *app = nil;
     isFinished = NO;
     isUpdating = NO;
     isReady = NO;
+    btlVers = 0;
+    usingBuiltInHex = YES;
     
     portPath = NSLocalizedString(@"portPath", @"");
     
@@ -93,6 +95,7 @@ AppDelegate *app = nil;
         // open file here
         //NSLog(@"file opened '%@'", filePath);
         hexPath = filePath;
+        usingBuiltInHex = NO;
         if (isReady) {
             [self printUpdateReadyMsg];
         }
@@ -205,14 +208,14 @@ AppDelegate *app = nil;
 	return YES;
 }
 
-- (void)readyToUpdateNotification:(NSNotificationCenter*)notification
+- (void)readyToUpdateNotification:(NSNotification*)notification
 {
     [app performSelectorOnMainThread:@selector(readyToUpdateProc:)
-                          withObject:nil
+                          withObject:[[notification userInfo] valueForKey:@"btlVers"]
                        waitUntilDone:NO];
 }
 
-- (void)disappearPortNotification:(NSNotificationCenter*)notification
+- (void)disappearPortNotification:(NSNotification*)notification
 {
     [app performSelectorOnMainThread:@selector(disappearPortProc:)
                           withObject:nil
@@ -220,15 +223,26 @@ AppDelegate *app = nil;
 }
 
 // アップデートが可能になったときにメインスレッドで実行される処理
-- (void)readyToUpdateProc:(id)object
+- (void)readyToUpdateProc:(NSNumber*)btlVersion
 {
     // 開始ボタンを有効化する
     [mStartButton setEnabled:YES];
     isReady = YES;
+    btlVers = [btlVersion intValue];
     
     // ファイルが選択されていなかったら内蔵のFWを設定する
-    if (hexPath == nil) {
-        [self loadDefaultHexPath:1];    // TODO: MBの種類を認識して変える
+    
+    if ((hexPath == nil) || (usingBuiltInHex == YES)) {
+        // MBの種類を認識して変える
+        if (btlVers == BTL_VERS_MB1) {
+            [self loadDefaultHexPath:0];
+        }
+        else if (btlVers == BTL_VERS_MB2) {
+            [self loadDefaultHexPath:1];
+        }
+        else {
+            [self loadDefaultHexPath:1];
+        }
     }
     
     [self printUpdateReadyMsg];
@@ -236,7 +250,16 @@ AppDelegate *app = nil;
 
 - (void)printUpdateReadyMsg
 {
-    [self printMessage:NSLocalizedString(@"readyToUpdate1", @"")];
+    if (btlVers == BTL_VERS_MB1) {
+        [self printMessage:NSLocalizedString(@"detectMB1", @"")];
+    }
+    else if (btlVers == BTL_VERS_MB2) {
+        [self printMessage:NSLocalizedString(@"detectMB2", @"")];
+    }
+    else {
+        [self printMessage:NSLocalizedString(@"detectUnknownMB", @"")];
+    }
+    [self putMsg:NSLocalizedString(@"readyToUpdate1", @"")];
     [self putMsg:[[hexPath path] lastPathComponent]];
     [self putMsg:NSLocalizedString(@"readyToUpdate2", @"")];
 }
@@ -319,7 +342,7 @@ AppDelegate *app = nil;
 {
     isUpdating = NO;
     [self.window setStyleMask:[self.window styleMask] | NSClosableWindowMask];
-    if (isSyncFailed) {
+    if (isSyncFailed || ([returnCode intValue] != 0)) {
         NSRunAlertPanel(NSLocalizedString(@"syncFail1",@""),
                         NSLocalizedString(@"syncFail2",@""),
                         NSLocalizedString(@"OK",@""),nil,nil);

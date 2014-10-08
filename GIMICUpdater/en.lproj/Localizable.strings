@@ -11,10 +11,7 @@
 
 "portPath" = "/dev/cu.SLAB_USBtoUART";
 
-"hexPath_mb1" = "gimic-mb1.hex";
-"hexPath_mb2" = "gimic-mb2.hex";
-
-"preparingToUpdate" = "MB1をアップデートする場合は、USBポート側から見て基板上のスイッチを左側に切り替え、右側のUSBポートにケーブルを接続してください。\nMB2をアップデートする場合は、ON/OFFボタンを押しながらUSBケーブルを接続してください。";
+"preparingToUpdate" = "** 注意 **\nお持ちのGIMICがMB1かMB2かによって、アップデートの方法が異なります。\n\nMB1をアップデートする場合は、USBポート側から見て基板上のスイッチを左側に切り替え、右側のUSBポートにケーブルを接続してください。\n\nMB2をアップデートする場合は、ON/OFFボタンを押しながらUSBケーブルをPCに接続してください。";
 "readyToUpdate1" = "GIMICを以下のファームウェアに更新します。\n";
 "readyToUpdate2" = "\n開始するには「アップデート開始」をクリックしてください。";
 "updating" = "アップデートを行っています。完了するまでUSBケーブルを抜かないでください。\n";
@@ -28,3 +25,7 @@
 
 "syncFail1" = "アップデートを開始出来ませんでした。";
 "syncFail2" = "GIMICがアップデートモードになっているかを確認し、アップデートを再度実行してください。";
+
+"detectMB1" = "MB1 を認識しました。\n";
+"detectMB2" = "MB2 を認識しました。\n";
+"detectUnknownMB" = "未知のバージョンのデバイスを認識しました。GIMICではない可能性もあります。\n";

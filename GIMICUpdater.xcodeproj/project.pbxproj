@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		F51A5ACA19E2C67D00F4A6C0 /* PortChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = F51A5AC919E2C67D00F4A6C0 /* PortChecker.m */; };
 		F51A5ACD19E2DE9600F4A6C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51A5ACB19E2DE9600F4A6C0 /* Localizable.strings */; };
-		F51A5AD119E2FACC00F4A6C0 /* gimic-mb2.hex in Resources */ = {isa = PBXBuildFile; fileRef = F51A5AD019E2FAC100F4A6C0 /* gimic-mb2.hex */; };
-		F51A5AD319E2FB5600F4A6C0 /* gimic-mb1.hex in Resources */ = {isa = PBXBuildFile; fileRef = F51A5AD219E2FB4F00F4A6C0 /* gimic-mb1.hex */; };
 		F527A53F19DDA9AA002DFE7C /* DownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F527A53E19DDA9AA002DFE7C /* DownloadOperation.m */; };
+		F547B66119E5720200F80A4E /* MB1_FW_20140908.hex in Resources */ = {isa = PBXBuildFile; fileRef = F547B65F19E5720200F80A4E /* MB1_FW_20140908.hex */; };
+		F547B66219E5720200F80A4E /* MB2_MB2LT_FW_20140908.hex in Resources */ = {isa = PBXBuildFile; fileRef = F547B66019E5720200F80A4E /* MB2_MB2LT_FW_20140908.hex */; };
 		F5670C5019DD8D7300FA3D79 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5670C4F19DD8D7300FA3D79 /* Cocoa.framework */; };
 		F5670C5A19DD8D7300FA3D79 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5670C5819DD8D7300FA3D79 /* InfoPlist.strings */; };
 		F5670C5C19DD8D7300FA3D79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5670C5B19DD8D7300FA3D79 /* main.m */; };
@@ -29,10 +29,10 @@
 		F51A5AC819E2C67D00F4A6C0 /* PortChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortChecker.h; sourceTree = "<group>"; };
 		F51A5AC919E2C67D00F4A6C0 /* PortChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortChecker.m; sourceTree = "<group>"; };
 		F51A5ACF19E2DEC100F4A6C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F51A5AD019E2FAC100F4A6C0 /* gimic-mb2.hex */ = {isa = PBXFileReference; lastKnownFileType = text; path = "gimic-mb2.hex"; sourceTree = "<group>"; };
-		F51A5AD219E2FB4F00F4A6C0 /* gimic-mb1.hex */ = {isa = PBXFileReference; lastKnownFileType = text; path = "gimic-mb1.hex"; sourceTree = "<group>"; };
 		F527A53D19DDA9AA002DFE7C /* DownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadOperation.h; sourceTree = "<group>"; };
 		F527A53E19DDA9AA002DFE7C /* DownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadOperation.m; sourceTree = "<group>"; };
+		F547B65F19E5720200F80A4E /* MB1_FW_20140908.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MB1_FW_20140908.hex; sourceTree = "<group>"; };
+		F547B66019E5720200F80A4E /* MB2_MB2LT_FW_20140908.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MB2_MB2LT_FW_20140908.hex; sourceTree = "<group>"; };
 		F5670C4C19DD8D7300FA3D79 /* GIMICUpdater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIMICUpdater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5670C4F19DD8D7300FA3D79 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F5670C5219DD8D7300FA3D79 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -109,8 +109,8 @@
 		F5670C5519DD8D7300FA3D79 /* GIMICUpdater */ = {
 			isa = PBXGroup;
 			children = (
-				F51A5AD219E2FB4F00F4A6C0 /* gimic-mb1.hex */,
-				F51A5AD019E2FAC100F4A6C0 /* gimic-mb2.hex */,
+				F547B65F19E5720200F80A4E /* MB1_FW_20140908.hex */,
+				F547B66019E5720200F80A4E /* MB2_MB2LT_FW_20140908.hex */,
 				F5670C6119DD8D7300FA3D79 /* AppDelegate.h */,
 				F5670C6219DD8D7300FA3D79 /* AppDelegate.m */,
 				F51A5ACB19E2DE9600F4A6C0 /* Localizable.strings */,
@@ -204,12 +204,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F51A5AD319E2FB5600F4A6C0 /* gimic-mb1.hex in Resources */,
-				F51A5AD119E2FACC00F4A6C0 /* gimic-mb2.hex in Resources */,
 				F51A5ACD19E2DE9600F4A6C0 /* Localizable.strings in Resources */,
+				F547B66119E5720200F80A4E /* MB1_FW_20140908.hex in Resources */,
 				F5670C5A19DD8D7300FA3D79 /* InfoPlist.strings in Resources */,
 				F5670C6819DD8D7300FA3D79 /* Images.xcassets in Resources */,
 				F5670C6019DD8D7300FA3D79 /* Credits.rtf in Resources */,
+				F547B66219E5720200F80A4E /* MB2_MB2LT_FW_20140908.hex in Resources */,
 				F5670C6619DD8D7300FA3D79 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

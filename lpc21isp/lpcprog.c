@@ -710,7 +710,7 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
 #if defined INTEGRATED_IN_WIN_APP
     AppSyncing(-1);                         // flag syncing done
 #endif
-
+/*
     DebugPrintf(2, " OK\n");
 
     SendComPort(IspEnvironment, "Synchronized\r\n");
@@ -742,7 +742,7 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
         DebugPrintf(1, "No answer on Oscillator-Command\n");
         return (NO_ANSWER_OSC);
     }
-
+*/
     DebugPrintf(3, "Unlock\n");
 
     cmdstr = "U 23130\r\n";

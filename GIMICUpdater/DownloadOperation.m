@@ -42,8 +42,8 @@ void EndWrite();
     
     @autoreleasepool {
         int numArgs = 1;
-        char params[9][1024];
-        char *arguments[9] = {
+        char params[10][1024];
+        char *arguments[10] = {
             params[0],
             params[1],
             params[2],
@@ -52,7 +52,8 @@ void EndWrite();
             params[5],
             params[6],
             params[7],
-            params[8]
+            params[8],
+            params[9]
         };
         
         arguments[0] = 0;
@@ -69,6 +70,9 @@ void EndWrite();
             strcpy(arguments[numArgs], "-wipe");
             numArgs++;
         }
+        
+        strcpy(arguments[numArgs], "-nosync");
+        numArgs++;
         
         strcpy(arguments[numArgs], "-hex");
         numArgs++;

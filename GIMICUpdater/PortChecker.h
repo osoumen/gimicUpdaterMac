@@ -11,6 +11,7 @@
 @interface PortChecker : NSOperation
 {
     NSString    *portPath;
+    int         btlVersion;
 }
 
 - (void)setPortPath:(NSString*)path;

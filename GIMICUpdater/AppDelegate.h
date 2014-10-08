@@ -8,6 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+#define BTL_VERS_MB1 (0x33)
+#define BTL_VERS_MB2 (0x43)
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
     IBOutlet NSTextView             *mMessageView;
@@ -26,6 +29,8 @@
     BOOL                            fullDebug;
     BOOL                            noVerify;
     BOOL                            eraseBeforeUpload;
+    int                             btlVers;
+    BOOL                            usingBuiltInHex;
 }
 @property (assign) IBOutlet NSWindow *window;
 @property BOOL                       showLog;
