@@ -314,7 +314,7 @@ AppDelegate *app = nil;
     
     [self printMessage:NSLocalizedString(@"updating", @"")];
     [mStartButton setEnabled:NO];
-    [_window setStyleMask:[_window styleMask] & ~NSClosableWindowMask];
+    [self.window setStyleMask:[self.window styleMask] & ~NSClosableWindowMask];
     [mProgressBar setIndeterminate:YES];
     [mProgressBar startAnimation:self];
     isReady = NO;
