@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "DownloadOperation.h"
 #import "PortChecker.h"
+#import "FetchFirmWareOperation.h"
 
 AppDelegate *app = nil;
 
@@ -37,6 +38,11 @@ AppDelegate *app = nil;
     
     hexPath = nil;
     
+    // 最新版FWを取得する
+    FetchFirmWareOperation *tOperation2 = [[FetchFirmWareOperation alloc] init];
+    [tOperation2 setFWPageUrl:NSLocalizedString(@"updaterPageURL", @"")];
+    [gQueue addOperation:tOperation2];
+
     // アップデート可能チェックを開始させる
     NSNotificationCenter    *center;
     center = [NSNotificationCenter defaultCenter];
@@ -48,35 +54,47 @@ AppDelegate *app = nil;
                selector:@selector(disappearPortNotification:)
                    name:@"DisappearPort"
                  object:nil];
+    [center addObserver:self
+               selector:@selector(succeedFetchFirmWareNotification:)
+                   name:@"succeedFetchFirmWare"
+                 object:nil];
     PortChecker *tOperation = [[PortChecker alloc] init];
     [tOperation setPortPath:portPath];
     [gQueue addOperation:tOperation];
     
     // アップデート準備を促すメッセージを表示
     [self printMessage:NSLocalizedString(@"preparingToUpdate", @"")];
+    
+    [self putMsg:NSLocalizedString(@"fetchingFirmWare", @"")];
 }
 
 - (void)loadDefaultHexPath:(int)mbType
 {
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSArray *paths = [bundle pathsForResourcesOfType:@"hex"
-                                         inDirectory:nil];
+    //NSBundle *bundle = [NSBundle mainBundle];
+    //NSArray *paths = [bundle pathsForResourcesOfType:@"hex"
+    //                                     inDirectory:nil];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSArray *paths = [fileManager contentsOfDirectoryAtPath:@"/tmp"
+                                                      error:&error];
     NSURL *mb1FWPath = nil;
     NSURL *mb2FWPath = nil;
     
     for (int i=0; i<[paths count]; i++) {
         NSString *fwpath = [paths objectAtIndex:i];
-        NSRange result = [fwpath rangeOfString:@"MB1"];
+        NSRange result = [fwpath rangeOfString:@"MB1.*\\.hex$"
+                                       options:NSRegularExpressionSearch];
         if (result.location != NSNotFound) {
             if (mb1FWPath == nil) {
-                mb1FWPath = [NSURL URLWithString:fwpath
+                mb1FWPath = [NSURL URLWithString:[NSString stringWithFormat:@"/tmp/%@",fwpath]
                                    relativeToURL:nil];
             }
         }
-        result = [fwpath rangeOfString:@"MB2"];
+        result = [fwpath rangeOfString:@"MB2.*\\.hex$"
+                               options:NSRegularExpressionSearch];
         if (result.location != NSNotFound) {
             if (mb2FWPath == nil) {
-                mb2FWPath = [NSURL URLWithString:fwpath
+                mb2FWPath = [NSURL URLWithString:[NSString stringWithFormat:@"/tmp/%@",fwpath]
                                    relativeToURL:nil];
             }
         }
@@ -105,6 +123,7 @@ AppDelegate *app = nil;
     NSOpenPanel *openPanel	= [NSOpenPanel openPanel];
     NSArray *allowedFileTypes = [NSArray arrayWithObjects:@"hex",nil,nil];
     [openPanel setAllowedFileTypes:allowedFileTypes];
+    [openPanel setTitle:NSLocalizedString(@"selecthexfile", @"")];
     NSInteger pressedButton = [openPanel runModal];
     
     if ( pressedButton == NSOKButton ) {
@@ -242,14 +261,16 @@ AppDelegate *app = nil;
                        waitUntilDone:NO];
 }
 
+- (void)succeedFetchFirmWareNotification:(NSNotification*)notification
+{
+    [app performSelectorOnMainThread:@selector(succeedFetchFirmWareProc:)
+                          withObject:[[notification userInfo] valueForKey:@"fwFile"]
+                       waitUntilDone:NO];
+}
+
 // アップデートが可能になったときにメインスレッドで実行される処理
 - (void)readyToUpdateProc:(NSNumber*)btlVersion
 {
-    // 開始ボタンを有効化する
-    [mStartButton setEnabled:YES];
-    isReady = YES;
-    btlVers = [btlVersion intValue];
-    
     // ファイルが選択されていなかったら内蔵のFWを設定する
     
     if ((hexPath == nil) || (usingBuiltInHex == YES)) {
@@ -264,6 +285,11 @@ AppDelegate *app = nil;
             [self loadDefaultHexPath:1];
         }
     }
+    
+    // 開始ボタンを有効化する
+    [mStartButton setEnabled:YES];
+    isReady = YES;
+    btlVers = [btlVersion intValue];
     
     [self printUpdateReadyMsg];
 }
@@ -282,6 +308,27 @@ AppDelegate *app = nil;
     [self putMsg:NSLocalizedString(@"readyToUpdate1", @"")];
     [self putMsg:[[hexPath path] lastPathComponent]];
     [self putMsg:NSLocalizedString(@"readyToUpdate2", @"")];
+}
+
+// ファームウェアの取得に成功したときメインスレッドで実行される処理
+- (void)succeedFetchFirmWareProc:(NSString*)fwURL
+{
+    if (fwURL != nil) {
+        [self putMsg:NSLocalizedString(@"succeedFetchFirmWare", @"")];
+        NSRange range = [fwURL rangeOfString:@"openfile=.*zip$"
+                                     options:NSRegularExpressionSearch];
+        range.length -= 9;
+        range.location += 9;
+        [self putMsg:NSLocalizedString([fwURL substringWithRange:range], @"")];
+    }
+    else {
+        [self putMsg:NSLocalizedString(@"failFetchFirmWare", @"")];
+        
+        // ダウンロードに失敗した場合はファイル選択ダイアログを表示
+        while (hexPath == nil) {
+            [self onSelectOpen:self];
+        }
+    }
 }
 
 // ケーブルが抜かれたときメインスレッドで実行される処理

@@ -10,8 +10,6 @@
 		F51A5ACA19E2C67D00F4A6C0 /* PortChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = F51A5AC919E2C67D00F4A6C0 /* PortChecker.m */; };
 		F51A5ACD19E2DE9600F4A6C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51A5ACB19E2DE9600F4A6C0 /* Localizable.strings */; };
 		F527A53F19DDA9AA002DFE7C /* DownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F527A53E19DDA9AA002DFE7C /* DownloadOperation.m */; };
-		F547B66119E5720200F80A4E /* MB1_FW_20140908.hex in Resources */ = {isa = PBXBuildFile; fileRef = F547B65F19E5720200F80A4E /* MB1_FW_20140908.hex */; };
-		F547B66219E5720200F80A4E /* MB2_MB2LT_FW_20140908.hex in Resources */ = {isa = PBXBuildFile; fileRef = F547B66019E5720200F80A4E /* MB2_MB2LT_FW_20140908.hex */; };
 		F5670C5019DD8D7300FA3D79 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5670C4F19DD8D7300FA3D79 /* Cocoa.framework */; };
 		F5670C5A19DD8D7300FA3D79 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5670C5819DD8D7300FA3D79 /* InfoPlist.strings */; };
 		F5670C5C19DD8D7300FA3D79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5670C5B19DD8D7300FA3D79 /* main.m */; };
@@ -23,6 +21,10 @@
 		F5670C8D19DD90DD00FA3D79 /* lpc21isp.c in Sources */ = {isa = PBXBuildFile; fileRef = F5670C8619DD90DD00FA3D79 /* lpc21isp.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F5670C8E19DD90DD00FA3D79 /* lpcprog.c in Sources */ = {isa = PBXBuildFile; fileRef = F5670C8819DD90DD00FA3D79 /* lpcprog.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F5670C8F19DD90DD00FA3D79 /* lpcterm.c in Sources */ = {isa = PBXBuildFile; fileRef = F5670C8A19DD90DD00FA3D79 /* lpcterm.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F5BF080019E97003005F27D5 /* FetchFirmWareOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BF07FF19E97003005F27D5 /* FetchFirmWareOperation.m */; };
+		F5BF080719E98222005F27D5 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BF080319E98222005F27D5 /* HTMLNode.m */; };
+		F5BF080819E98222005F27D5 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BF080519E98222005F27D5 /* HTMLParser.m */; };
+		F5BF080B19E982AC005F27D5 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BF080A19E982AC005F27D5 /* libxml2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +33,6 @@
 		F51A5ACF19E2DEC100F4A6C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F527A53D19DDA9AA002DFE7C /* DownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadOperation.h; sourceTree = "<group>"; };
 		F527A53E19DDA9AA002DFE7C /* DownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadOperation.m; sourceTree = "<group>"; };
-		F547B65F19E5720200F80A4E /* MB1_FW_20140908.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MB1_FW_20140908.hex; sourceTree = "<group>"; };
-		F547B66019E5720200F80A4E /* MB2_MB2LT_FW_20140908.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MB2_MB2LT_FW_20140908.hex; sourceTree = "<group>"; };
 		F5670C4C19DD8D7300FA3D79 /* GIMICUpdater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIMICUpdater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5670C4F19DD8D7300FA3D79 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F5670C5219DD8D7300FA3D79 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -55,6 +55,13 @@
 		F5670C8919DD90DD00FA3D79 /* lpcprog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lpcprog.h; path = lpc21isp/lpcprog.h; sourceTree = "<group>"; };
 		F5670C8A19DD90DD00FA3D79 /* lpcterm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lpcterm.c; path = lpc21isp/lpcterm.c; sourceTree = "<group>"; };
 		F5670C8B19DD90DD00FA3D79 /* lpcterm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lpcterm.h; path = lpc21isp/lpcterm.h; sourceTree = "<group>"; };
+		F5BF07FE19E97003005F27D5 /* FetchFirmWareOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchFirmWareOperation.h; sourceTree = "<group>"; };
+		F5BF07FF19E97003005F27D5 /* FetchFirmWareOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchFirmWareOperation.m; sourceTree = "<group>"; };
+		F5BF080219E98222005F27D5 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
+		F5BF080319E98222005F27D5 /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
+		F5BF080419E98222005F27D5 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
+		F5BF080519E98222005F27D5 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
+		F5BF080A19E982AC005F27D5 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5BF080B19E982AC005F27D5 /* libxml2.dylib in Frameworks */,
 				F5670C5019DD8D7300FA3D79 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +80,7 @@
 		F5670C4319DD8D7300FA3D79 = {
 			isa = PBXGroup;
 			children = (
+				F5BF080119E98222005F27D5 /* HTTL-Parser */,
 				F5670C8319DD90C600FA3D79 /* lpc21isp */,
 				F5670C5519DD8D7300FA3D79 /* GIMICUpdater */,
 				F5670C4E19DD8D7300FA3D79 /* Frameworks */,
@@ -90,6 +99,7 @@
 		F5670C4E19DD8D7300FA3D79 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F5BF080A19E982AC005F27D5 /* libxml2.dylib */,
 				F5670C4F19DD8D7300FA3D79 /* Cocoa.framework */,
 				F5670C5119DD8D7300FA3D79 /* Other Frameworks */,
 			);
@@ -109,11 +119,11 @@
 		F5670C5519DD8D7300FA3D79 /* GIMICUpdater */ = {
 			isa = PBXGroup;
 			children = (
-				F547B65F19E5720200F80A4E /* MB1_FW_20140908.hex */,
-				F547B66019E5720200F80A4E /* MB2_MB2LT_FW_20140908.hex */,
 				F5670C6119DD8D7300FA3D79 /* AppDelegate.h */,
 				F5670C6219DD8D7300FA3D79 /* AppDelegate.m */,
 				F51A5ACB19E2DE9600F4A6C0 /* Localizable.strings */,
+				F5BF07FE19E97003005F27D5 /* FetchFirmWareOperation.h */,
+				F5BF07FF19E97003005F27D5 /* FetchFirmWareOperation.m */,
 				F51A5AC819E2C67D00F4A6C0 /* PortChecker.h */,
 				F51A5AC919E2C67D00F4A6C0 /* PortChecker.m */,
 				F527A53D19DDA9AA002DFE7C /* DownloadOperation.h */,
@@ -150,6 +160,17 @@
 				F5670C8B19DD90DD00FA3D79 /* lpcterm.h */,
 			);
 			name = lpc21isp;
+			sourceTree = "<group>";
+		};
+		F5BF080119E98222005F27D5 /* HTTL-Parser */ = {
+			isa = PBXGroup;
+			children = (
+				F5BF080219E98222005F27D5 /* HTMLNode.h */,
+				F5BF080319E98222005F27D5 /* HTMLNode.m */,
+				F5BF080419E98222005F27D5 /* HTMLParser.h */,
+				F5BF080519E98222005F27D5 /* HTMLParser.m */,
+			);
+			path = "HTTL-Parser";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,11 +226,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F51A5ACD19E2DE9600F4A6C0 /* Localizable.strings in Resources */,
-				F547B66119E5720200F80A4E /* MB1_FW_20140908.hex in Resources */,
 				F5670C5A19DD8D7300FA3D79 /* InfoPlist.strings in Resources */,
 				F5670C6819DD8D7300FA3D79 /* Images.xcassets in Resources */,
 				F5670C6019DD8D7300FA3D79 /* Credits.rtf in Resources */,
-				F547B66219E5720200F80A4E /* MB2_MB2LT_FW_20140908.hex in Resources */,
 				F5670C6619DD8D7300FA3D79 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +240,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5BF080719E98222005F27D5 /* HTMLNode.m in Sources */,
+				F5BF080819E98222005F27D5 /* HTMLParser.m in Sources */,
 				F527A53F19DDA9AA002DFE7C /* DownloadOperation.m in Sources */,
 				F5670C6319DD8D7300FA3D79 /* AppDelegate.m in Sources */,
 				F51A5ACA19E2C67D00F4A6C0 /* PortChecker.m in Sources */,
@@ -228,6 +249,7 @@
 				F5670C8D19DD90DD00FA3D79 /* lpc21isp.c in Sources */,
 				F5670C8C19DD90DD00FA3D79 /* adprog.c in Sources */,
 				F5670C5C19DD8D7300FA3D79 /* main.m in Sources */,
+				F5BF080019E97003005F27D5 /* FetchFirmWareOperation.m in Sources */,
 				F5670C8E19DD90DD00FA3D79 /* lpcprog.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,6 +327,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx10.8;
@@ -344,6 +371,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx10.8;
 			};
