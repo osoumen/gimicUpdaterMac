@@ -272,7 +272,7 @@ AppDelegate *app = nil;
 - (void)readyToUpdateProc:(NSNumber*)btlVersion
 {
     // ファイルが選択されていなかったら内蔵のFWを設定する
-    
+    btlVers = [btlVersion intValue];
     if ((hexPath == nil) || (usingBuiltInHex == YES)) {
         // MBの種類を認識して変える
         if (btlVers == BTL_VERS_MB1) {
@@ -289,7 +289,6 @@ AppDelegate *app = nil;
     // 開始ボタンを有効化する
     [mStartButton setEnabled:YES];
     isReady = YES;
-    btlVers = [btlVersion intValue];
     
     [self printUpdateReadyMsg];
 }
