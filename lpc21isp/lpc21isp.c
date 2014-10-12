@@ -850,7 +850,9 @@ static void ReceiveComPortBlock(ISP_ENVIRONMENT *IspEnvironment,
         }
     }
 #endif // defined COMPILE_FOR_LINUX
-
+    if (*real_size == -1) {
+        *real_size = 0;
+    }
     sprintf(tmp_string, "Read(Length=%ld): ", (*real_size));
     DumpString(5, answer, (*real_size), tmp_string);
 
