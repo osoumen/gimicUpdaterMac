@@ -81,8 +81,11 @@
     }
     
     // 通知
-    NSDictionary *btlVers = [NSDictionary dictionaryWithObject:mFWUrl
-                                                        forKey:@"fwFile"];
+    NSDictionary *btlVers = nil;
+    if (mFWUrl) {
+        btlVers = [NSDictionary dictionaryWithObject:mFWUrl
+                                              forKey:@"fwFile"];
+    }
     [center postNotificationName:@"succeedFetchFirmWare" object:self userInfo:btlVers];
 }
 
@@ -91,6 +94,7 @@
     NSString* targetFolder = @"/tmp";
     NSArray *arguments = [NSArray arrayWithObjects:@"-o", zipPath, nil];
     NSTask *unzipTask = [[NSTask alloc] init];
+    [unzipTask setStandardOutput:[NSFileHandle fileHandleWithNullDevice]];
     [unzipTask setLaunchPath:@"/usr/bin/unzip"];
     [unzipTask setCurrentDirectoryPath:targetFolder];
     [unzipTask setArguments:arguments];

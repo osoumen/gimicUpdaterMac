@@ -324,8 +324,11 @@ AppDelegate *app = nil;
         [self putMsg:NSLocalizedString(@"failFetchFirmWare", @"")];
         
         // ダウンロードに失敗した場合はファイル選択ダイアログを表示
-        while (hexPath == nil) {
+        if (hexPath == nil) {
             [self onSelectOpen:self];
+        }
+        if (hexPath == nil) {
+            [NSApp terminate:self];
         }
     }
 }

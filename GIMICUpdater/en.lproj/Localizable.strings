@@ -32,8 +32,8 @@
 "detectMB2" = "2代目マザーボードシリーズ を認識しました。\n";
 "detectUnknownMB" = "未知のバージョンのデバイスを認識しました。G.I.M.I.Cではない可能性もあります。\n";
 
-"fetchingFirmWare" = "\n\nWebから最新版のファームウェアを取得しています...\n";
-"succeedFetchFirmWare" = "以下のファームウェアが最新(安定版)です。\n";
+"fetchingFirmWare" = "\n\nWebから最新の安定版ファームウェアを取得しています...\n";
+"succeedFetchFirmWare" = "以下のファームウェアを取得しました。\n";
 "failFetchFirmWare" = "Webから取得できませんでした。\nダウンロード済みのhexファイルを選択してください。";
 
 "selecthexfile" = "Select .hex File";
