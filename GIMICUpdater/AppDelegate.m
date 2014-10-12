@@ -417,6 +417,9 @@ AppDelegate *app = nil;
     else {
         isFinished = YES;
         [self putMsg:NSLocalizedString(@"endUpdate", @"")];
+        if (btlVers == BTL_VERS_MB1) {
+            [self putMsg:NSLocalizedString(@"endUpdateMB1", @"")];
+        }
     }
     [mProgressBar stopAnimation:self];
 }
