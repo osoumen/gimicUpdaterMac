@@ -63,6 +63,8 @@
         }
     }
     
+    NSDictionary *btlVers = nil;
+    
     if (mFWUrl) {
         req = [NSURLRequest requestWithURL:[NSURL URLWithString:mFWUrl]
                                cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -75,23 +77,29 @@
             [center postNotificationName:@"succeedFetchFirmWare" object:self userInfo:nil];
             return;
         }
-        [data writeToFile:@"/tmp/gimic_fw.zip"
+        
+        NSRange range = [mFWUrl rangeOfString:@"openfile=.*zip$"
+                                      options:NSRegularExpressionSearch];
+        range.length -= 9;
+        range.location += 9;
+        NSString *fwZipName = [mFWUrl substringWithRange:range];
+        NSString *fwDlPath = [NSString stringWithFormat:@"%@/%@",
+                              NSLocalizedString(@"fwDownloadPath", @""),fwZipName];
+        
+        [data writeToFile:fwDlPath
                atomically:YES];
-        [self unzip];
+        [self unzip:fwDlPath];
+        
+        btlVers = [NSDictionary dictionaryWithObject:fwZipName forKey:@"fwName"];
     }
     
     // 通知
-    NSDictionary *btlVers = nil;
-    if (mFWUrl) {
-        btlVers = [NSDictionary dictionaryWithObject:mFWUrl
-                                              forKey:@"fwFile"];
-    }
     [center postNotificationName:@"succeedFetchFirmWare" object:self userInfo:btlVers];
 }
 
-- (void)unzip {
-    NSString* zipPath = @"/tmp/gimic_fw.zip";
-    NSString* targetFolder = @"/tmp";
+- (void)unzip:(NSString*)zipPath
+{
+    NSString* targetFolder = NSLocalizedString(@"fwDownloadPath", @"");
     NSArray *arguments = [NSArray arrayWithObjects:@"-o", zipPath, nil];
     NSTask *unzipTask = [[NSTask alloc] init];
     [unzipTask setStandardOutput:[NSFileHandle fileHandleWithNullDevice]];

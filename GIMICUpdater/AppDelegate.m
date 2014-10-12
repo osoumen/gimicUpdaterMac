@@ -264,7 +264,7 @@ AppDelegate *app = nil;
 - (void)succeedFetchFirmWareNotification:(NSNotification*)notification
 {
     [app performSelectorOnMainThread:@selector(succeedFetchFirmWareProc:)
-                          withObject:[[notification userInfo] valueForKey:@"fwFile"]
+                          withObject:[[notification userInfo] valueForKey:@"fwName"]
                        waitUntilDone:NO];
 }
 
@@ -310,15 +310,11 @@ AppDelegate *app = nil;
 }
 
 // ファームウェアの取得に成功したときメインスレッドで実行される処理
-- (void)succeedFetchFirmWareProc:(NSString*)fwURL
+- (void)succeedFetchFirmWareProc:(NSString*)fwName
 {
-    if (fwURL != nil) {
+    if (fwName != nil) {
         [self putMsg:NSLocalizedString(@"succeedFetchFirmWare", @"")];
-        NSRange range = [fwURL rangeOfString:@"openfile=.*zip$"
-                                     options:NSRegularExpressionSearch];
-        range.length -= 9;
-        range.location += 9;
-        [self putMsg:NSLocalizedString([fwURL substringWithRange:range], @"")];
+        [self putMsg:fwName];
     }
     else {
         [self putMsg:NSLocalizedString(@"failFetchFirmWare", @"")];
