@@ -414,6 +414,11 @@ AppDelegate *app = nil;
         [self printUpdateReadyMsg];
         [mStartButton setEnabled:YES];
     }
+    else if ([mProgressBar doubleValue] < [mProgressBar maxValue] ) {
+        [self notifyException:self];
+        [mProgressBar setDoubleValue:0];
+        [mProgressBar setIndeterminate:NO];
+    }
     else {
         isFinished = YES;
         [self putMsg:NSLocalizedString(@"endUpdate", @"")];
