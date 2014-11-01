@@ -92,7 +92,7 @@ void EndWrite();
         
         strcpy(arguments[numArgs], "230400");
         numArgs++;
-        strcpy(arguments[numArgs], "72000");
+        strcpy(arguments[numArgs], "12000");
         numArgs++;
 
         int ret = AppDoProgram(numArgs, arguments);
