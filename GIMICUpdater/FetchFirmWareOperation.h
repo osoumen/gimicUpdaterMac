@@ -12,7 +12,9 @@
 {
     NSURL       *mFWPageUrl;
     NSString    *mFWUrl;
+    BOOL        includeDevFW;
 }
 - (void)setFWPageUrl:(NSString*)path;
+- (void)allowDevelopFW:(BOOL)allow;
 
 @end

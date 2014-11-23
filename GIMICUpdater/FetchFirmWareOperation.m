@@ -24,6 +24,11 @@
     mFWPageUrl = [NSURL URLWithString:path];
 }
 
+- (void)allowDevelopFW:(BOOL)allow
+{
+    includeDevFW = allow;
+}
+
 - (void)main
 {
     NSNotificationCenter    *center;
@@ -52,20 +57,40 @@
                                                       error:&error];
     HTMLNode *bodyNode = [parser body];
     NSArray *aNodes = [bodyNode findChildTags:@"a"];
+
+    NSString* pattern = @"FW.*_(\\d{8})\\.zip$";
+    NSRegularExpression* regex = [NSRegularExpression
+                                  regularExpressionWithPattern:pattern
+                                  options:NSRegularExpressionCaseInsensitive
+                                  error:&error];
+    int fwVers = 0;
+    
     for (HTMLNode *node in aNodes) {
         NSString *href = [node getAttributeNamed:@"href"];
-        NSRange match = [href rangeOfString:@"FW.*\\.zip$"
-                                    options:NSRegularExpressionSearch];
-        if (match.location != NSNotFound && match.length > 0) {
-            mFWUrl = href;
-            //NSLog(@"%@", href);
-            break;
+        
+        if (href) {
+            NSTextCheckingResult *match= [regex firstMatchInString:href
+                                                           options:0
+                                                             range:NSMakeRange(0, href.length)];
+
+            if (match != nil && [match rangeAtIndex:0].location != NSNotFound) {
+                NSString *versStr = [href substringWithRange:[match rangeAtIndex:1]];
+                if ([versStr intValue] > fwVers) {
+                    fwVers = [versStr intValue];
+                    mFWUrl = href;
+                    //NSLog(@"%@", href);
+                    if (!includeDevFW) {
+                        break;
+                    }
+                }
+            }
         }
     }
     
     NSDictionary *btlVers = nil;
     
     if (mFWUrl) {
+        // 取得出来たならダウンロードを実行する
         req = [NSURLRequest requestWithURL:[NSURL URLWithString:mFWUrl]
                                cachePolicy:NSURLRequestUseProtocolCachePolicy
                            timeoutInterval:30.0];
@@ -99,6 +124,7 @@
 
 - (void)unzip:(NSString*)zipPath
 {
+    [self deleteOldFW];
     NSString* targetFolder = NSLocalizedString(@"fwDownloadPath", @"");
     NSArray *arguments = [NSArray arrayWithObjects:@"-o", zipPath, nil];
     NSTask *unzipTask = [[NSTask alloc] init];
@@ -110,4 +136,26 @@
     [unzipTask waitUntilExit];
 }
 
+- (void)deleteOldFW
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSArray *paths = [fileManager contentsOfDirectoryAtPath:@"/tmp"
+                                                      error:&error];
+    for (int i=0; i<[paths count]; i++) {
+        NSString *fwpath = [paths objectAtIndex:i];
+        NSRange result = [fwpath rangeOfString:@"MB1.*\\.hex$"
+                                       options:NSRegularExpressionSearch];
+        if (result.location != NSNotFound) {
+            [fileManager removeItemAtPath:[NSString stringWithFormat:@"/tmp/%@",fwpath]
+                                    error:&error];
+        }
+        result = [fwpath rangeOfString:@"MB2.*\\.hex$"
+                               options:NSRegularExpressionSearch];
+        if (result.location != NSNotFound) {
+            [fileManager removeItemAtPath:[NSString stringWithFormat:@"/tmp/%@",fwpath]
+                                    error:&error];
+        }
+    }
+}
 @end

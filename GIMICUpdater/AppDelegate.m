@@ -202,6 +202,10 @@ AppDelegate *app = nil;
 - (IBAction)toggleDevelopFW:(id)sender
 {
     BOOL allowDev = [mAllowDevelopFW state]?YES:NO;
+    FetchFirmWareOperation *tOperation2 = [[FetchFirmWareOperation alloc] init];
+    [tOperation2 allowDevelopFW:allowDev];
+    [tOperation2 setFWPageUrl:NSLocalizedString(@"updaterPageURL", @"")];
+    [gQueue addOperation:tOperation2];
 }
 
 // --- メニューアイテムの使用可否の処理
@@ -320,6 +324,7 @@ AppDelegate *app = nil;
     if (fwName != nil) {
         [self putMsg:NSLocalizedString(@"succeedFetchFirmWare", @"")];
         [self putMsg:fwName];
+        [self putMsg:@"\n"];
     }
     else {
         [self putMsg:NSLocalizedString(@"failFetchFirmWare", @"")];
