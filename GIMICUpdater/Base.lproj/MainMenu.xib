@@ -748,9 +748,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </progressIndicator>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LI8-U9-IHG">
-                        <rect key="frame" x="18" y="18" width="282" height="18"/>
+                        <rect key="frame" x="18" y="18" width="269" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="開発版ファームウェアを自動取得対象にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Nvm-2W-cBw">
+                        <buttonCell key="cell" type="check" title="開発版ファームウェアを自動取得に含める" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Nvm-2W-cBw">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" size="13" name="AquaKana"/>
                         </buttonCell>
