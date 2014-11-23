@@ -17,6 +17,7 @@
     NSOperationQueue                *gQueue;
     IBOutlet NSProgressIndicator    *mProgressBar;
     IBOutlet NSButton               *mStartButton;
+    IBOutlet NSButton               *mAllowDevelopFW;
     
     BOOL                            isFinished;     // 書き換えを完了したらYESになる
     BOOL                            isReady;
@@ -45,5 +46,7 @@
 - (IBAction)toggleFullDebug:(id)sender;
 - (IBAction)toggleNoVerify:(id)sender;
 - (IBAction)toggleEraseBeforeUpload:(id)sender;
+
+- (IBAction)toggleDevelopFW:(id)sender;
 
 @end

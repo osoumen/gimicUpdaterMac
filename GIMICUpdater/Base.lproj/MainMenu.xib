@@ -14,6 +14,7 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
+                <outlet property="mAllowDevelopFW" destination="LI8-U9-IHG" id="W45-x0-2aw"/>
                 <outlet property="mMessageView" destination="B6e-Nc-bia" id="l4H-Mf-b4f"/>
                 <outlet property="mProgressBar" destination="1wr-Go-WGy" id="I4Z-0D-eZb"/>
                 <outlet property="mStartButton" destination="wHv-Zh-Fb0" id="N2C-B3-E8Z"/>
@@ -696,14 +697,14 @@
         <window title="GIMICUpdater" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="120" y="300" width="480" height="360"/>
+            <rect key="contentRect" x="120" y="300" width="480" height="399"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1366" height="746"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="399"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wHv-Zh-Fb0">
-                        <rect key="frame" x="168" y="51" width="144" height="32"/>
+                        <rect key="frame" x="168" y="75" width="144" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="アップデート開始" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NK0-hT-oVu">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -714,20 +715,20 @@
                         </connections>
                     </button>
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWq-W9-ZI7">
-                        <rect key="frame" x="20" y="99" width="440" height="241"/>
+                        <rect key="frame" x="20" y="123" width="440" height="256"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <clipView key="contentView" id="875-Rb-I1J">
-                            <rect key="frame" x="1" y="1" width="423" height="239"/>
+                            <rect key="frame" x="1" y="1" width="423" height="254"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="B6e-Nc-bia">
-                                    <rect key="frame" x="0.0" y="0.0" width="423" height="239"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="423" height="254"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="423" height="239"/>
+                                    <size key="minSize" width="423" height="254"/>
                                     <size key="maxSize" width="463" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="423" height="239"/>
+                                    <size key="minSize" width="423" height="254"/>
                                     <size key="maxSize" width="463" height="10000000"/>
                                 </textView>
                             </subviews>
@@ -738,19 +739,30 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="6xz-XJ-vSA">
-                            <rect key="frame" x="424" y="1" width="15" height="239"/>
+                            <rect key="frame" x="424" y="1" width="15" height="254"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
                     <progressIndicator displayedWhenStopped="NO" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="1wr-Go-WGy">
-                        <rect key="frame" x="20" y="19" width="440" height="20"/>
+                        <rect key="frame" x="20" y="43" width="440" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </progressIndicator>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LI8-U9-IHG">
+                        <rect key="frame" x="18" y="18" width="282" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="開発版ファームウェアを自動取得対象にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Nvm-2W-cBw">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" size="13" name="AquaKana"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleDevelopFW:" target="Voe-Tx-rLC" id="6Be-sS-Q3B"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="XWq-W9-ZI7" firstAttribute="trailing" secondItem="1wr-Go-WGy" secondAttribute="trailing" id="04x-xU-hcH"/>
                     <constraint firstItem="1wr-Go-WGy" firstAttribute="centerX" secondItem="wHv-Zh-Fb0" secondAttribute="centerX" id="6du-zy-g3D"/>
-                    <constraint firstAttribute="bottom" secondItem="1wr-Go-WGy" secondAttribute="bottom" constant="20" symbolic="YES" id="75o-F0-cnE"/>
+                    <constraint firstAttribute="bottom" secondItem="1wr-Go-WGy" secondAttribute="bottom" constant="44" id="75o-F0-cnE"/>
                     <constraint firstItem="XWq-W9-ZI7" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" symbolic="YES" id="CxP-hX-SJl"/>
                     <constraint firstItem="1wr-Go-WGy" firstAttribute="leading" secondItem="XWq-W9-ZI7" secondAttribute="leading" id="FQe-zO-mvN"/>
                     <constraint firstAttribute="trailing" secondItem="XWq-W9-ZI7" secondAttribute="trailing" constant="20" symbolic="YES" id="KyB-hL-xc3"/>

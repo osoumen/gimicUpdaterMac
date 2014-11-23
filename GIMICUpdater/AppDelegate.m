@@ -199,6 +199,11 @@ AppDelegate *app = nil;
     eraseBeforeUpload = eraseBeforeUpload?NO:YES;
 }
 
+- (IBAction)toggleDevelopFW:(id)sender
+{
+    BOOL allowDev = [mAllowDevelopFW state]?YES:NO;
+}
+
 // --- メニューアイテムの使用可否の処理
 - (BOOL) validateMenuItem:(NSMenuItem*)anItem
 {
