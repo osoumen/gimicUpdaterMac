@@ -9,6 +9,8 @@
 #import "FetchFirmWareOperation.h"
 #import "HTMLParser.h"
 
+NSLock* _lock = nil;
+
 @implementation FetchFirmWareOperation
 
 - (id)init
@@ -16,6 +18,9 @@
     self = [super init];
     mFWPageUrl = nil;
     mFWUrl = nil;
+    if (_lock == nil) {
+        _lock = [[NSLock alloc] init];
+    }
     return self;
 }
 
@@ -111,9 +116,16 @@
         NSString *fwDlPath = [NSString stringWithFormat:@"%@/%@",
                               NSLocalizedString(@"fwDownloadPath", @""),fwZipName];
         
-        [data writeToFile:fwDlPath
-               atomically:YES];
-        [self unzip:fwDlPath];
+        [_lock lock];
+        @try {
+            [data writeToFile:fwDlPath
+                   atomically:YES];
+            [self deleteOldFW];
+            [self unzip:fwDlPath];
+        }
+        @finally {
+            [_lock unlock];
+        }
         
         btlVers = [NSDictionary dictionaryWithObject:fwZipName forKey:@"fwName"];
     }
@@ -124,7 +136,6 @@
 
 - (void)unzip:(NSString*)zipPath
 {
-    [self deleteOldFW];
     NSString* targetFolder = NSLocalizedString(@"fwDownloadPath", @"");
     NSArray *arguments = [NSArray arrayWithObjects:@"-o", zipPath, nil];
     NSTask *unzipTask = [[NSTask alloc] init];
