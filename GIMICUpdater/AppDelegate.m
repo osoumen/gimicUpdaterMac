@@ -201,11 +201,13 @@ AppDelegate *app = nil;
 
 - (IBAction)toggleDevelopFW:(id)sender
 {
-    BOOL allowDev = [mAllowDevelopFW state]?YES:NO;
-    FetchFirmWareOperation *tOperation2 = [[FetchFirmWareOperation alloc] init];
-    [tOperation2 allowDevelopFW:allowDev];
-    [tOperation2 setFWPageUrl:NSLocalizedString(@"updaterPageURL", @"")];
-    [gQueue addOperation:tOperation2];
+    if (isReady == NO && isUpdating == NO) {
+        BOOL allowDev = [mAllowDevelopFW state]?YES:NO;
+        FetchFirmWareOperation *tOperation2 = [[FetchFirmWareOperation alloc] init];
+        [tOperation2 allowDevelopFW:allowDev];
+        [tOperation2 setFWPageUrl:NSLocalizedString(@"updaterPageURL", @"")];
+        [gQueue addOperation:tOperation2];
+    }
 }
 
 // --- メニューアイテムの使用可否の処理
