@@ -756,6 +756,7 @@
                         </buttonCell>
                         <connections>
                             <action selector="toggleDevelopFW:" target="Voe-Tx-rLC" id="6Be-sS-Q3B"/>
+                            <binding destination="nmd-Gc-owO" name="value" keyPath="values.allowDevelopFW" id="Gpg-90-V6L"/>
                         </connections>
                     </button>
                 </subviews>
@@ -772,5 +773,6 @@
                 </constraints>
             </view>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="nmd-Gc-owO"/>
     </objects>
 </document>

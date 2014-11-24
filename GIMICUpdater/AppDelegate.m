@@ -40,6 +40,7 @@ AppDelegate *app = nil;
     
     // 最新版FWを取得する
     FetchFirmWareOperation *tOperation2 = [[FetchFirmWareOperation alloc] init];
+    [tOperation2 allowDevelopFW:[mAllowDevelopFW state]?YES:NO];
     [tOperation2 setFWPageUrl:NSLocalizedString(@"updaterPageURL", @"")];
     [gQueue addOperation:tOperation2];
 
@@ -202,9 +203,8 @@ AppDelegate *app = nil;
 - (IBAction)toggleDevelopFW:(id)sender
 {
     if (isReady == NO && isUpdating == NO) {
-        BOOL allowDev = [mAllowDevelopFW state]?YES:NO;
         FetchFirmWareOperation *tOperation2 = [[FetchFirmWareOperation alloc] init];
-        [tOperation2 allowDevelopFW:allowDev];
+        [tOperation2 allowDevelopFW:[mAllowDevelopFW state]?YES:NO];
         [tOperation2 setFWPageUrl:NSLocalizedString(@"updaterPageURL", @"")];
         [gQueue addOperation:tOperation2];
     }
