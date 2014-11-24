@@ -237,6 +237,9 @@ AppDelegate *app = nil;
     [mStartButton setEnabled:YES];
     isReady = YES;
     
+    // チェックボックスを無効化する
+    [mAllowDevelopFW setEnabled:NO];
+    
     [self printUpdateReadyMsg];
 }
 
@@ -284,17 +287,21 @@ AppDelegate *app = nil;
     [mStartButton setEnabled:NO];
     isReady = NO;
     
+    // チェックボックスを有効化する
+    [mAllowDevelopFW setEnabled:YES];
+    
     // 実行中なら停止させる
     if (isUpdating) {
         isUpdating = NO;
         [self.window setStyleMask:[self.window styleMask] | NSClosableWindowMask];
         [self printUpdateReadyMsg];
     }
-    // 完了前ならポートチェックを再度開始する
+    // ポートチェックを再度開始する
+    PortChecker *tOperation = [[PortChecker alloc] init];
+    [tOperation setPortPath:portPath];
+    [gQueue addOperation:tOperation];
+    // 完了前なら初期メッセージを再度表示する
     if (isFinished == NO) {
-        PortChecker *tOperation = [[PortChecker alloc] init];
-        [tOperation setPortPath:portPath];
-        [gQueue addOperation:tOperation];
         [self printMessage:NSLocalizedString(@"preparingToUpdate", @"")];
     }
 }
@@ -361,6 +368,7 @@ AppDelegate *app = nil;
                         NSLocalizedString(@"OK",@""),nil,nil);
         [self printUpdateReadyMsg];
         [mStartButton setEnabled:YES];
+        [mAllowDevelopFW setEnabled:YES];
     }
     else if ([mProgressBar doubleValue] < [mProgressBar maxValue] ) {
         [self notifyException:self];
@@ -369,9 +377,12 @@ AppDelegate *app = nil;
     }
     else {
         isFinished = YES;
-        [self putMsg:NSLocalizedString(@"endUpdate", @"")];
+        [mAllowDevelopFW setEnabled:YES];
         if (btlVers == BTL_VERS_MB1) {
             [self putMsg:NSLocalizedString(@"endUpdateMB1", @"")];
+        }
+        else {
+            [self putMsg:NSLocalizedString(@"endUpdateMB2", @"")];
         }
     }
     [mProgressBar stopAnimation:self];
