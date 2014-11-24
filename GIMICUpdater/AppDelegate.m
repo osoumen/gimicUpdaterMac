@@ -15,8 +15,6 @@ AppDelegate *app = nil;
 
 @implementation AppDelegate
 
-@synthesize showLog;
-@synthesize fullDebug;
 @synthesize isUpdating;
 @synthesize isSyncFailed;
 
@@ -180,26 +178,6 @@ AppDelegate *app = nil;
     return YES;
 }
 
-- (IBAction)toggleShowLog:(id)sender
-{
-    showLog = showLog?NO:YES;
-}
-
-- (IBAction)toggleFullDebug:(id)sender
-{
-    fullDebug = fullDebug?NO:YES;
-}
-
-- (IBAction)toggleNoVerify:(id)sender
-{
-    noVerify = noVerify?NO:YES;
-}
-
-- (IBAction)toggleEraseBeforeUpload:(id)sender
-{
-    eraseBeforeUpload = eraseBeforeUpload?NO:YES;
-}
-
 - (IBAction)toggleDevelopFW:(id)sender
 {
     if (isReady == NO && isUpdating == NO) {
@@ -213,48 +191,6 @@ AppDelegate *app = nil;
 // --- メニューアイテムの使用可否の処理
 - (BOOL) validateMenuItem:(NSMenuItem*)anItem
 {
-	SEL menuAction = [anItem action]; // メニューアイテムのアクションを取得
-	
-	if (menuAction == @selector(toggleShowLog:)) {
-		if (showLog) {
-			[anItem setState:NSOnState];
-		}
-		else {
-			[anItem setState:NSOffState];
-		}
-		return YES;
-	}
-    
-    if (menuAction == @selector(toggleFullDebug:)) {
-		if (fullDebug) {
-			[anItem setState:NSOnState];
-		}
-		else {
-			[anItem setState:NSOffState];
-		}
-		return YES;
-	}
-    
-    if (menuAction == @selector(toggleNoVerify:)) {
-		if (noVerify) {
-			[anItem setState:NSOnState];
-		}
-		else {
-			[anItem setState:NSOffState];
-		}
-		return YES;
-	}
-    
-    if (menuAction == @selector(toggleEraseBeforeUpload:)) {
-		if (eraseBeforeUpload) {
-			[anItem setState:NSOnState];
-		}
-		else {
-			[anItem setState:NSOffState];
-		}
-		return YES;
-	}
-	
 	return YES;
 }
 
@@ -380,9 +316,9 @@ AppDelegate *app = nil;
     DownloadOperation *tOperation = [[DownloadOperation alloc] init];
     [tOperation setHexFilePath:hexPath];
     [tOperation setPortPath:portPath];
-    [tOperation setFullDebug:fullDebug];
-    [tOperation setNoVerify:noVerify];
-    [tOperation setEraseBeforeUpload:eraseBeforeUpload];
+    [tOperation setFullDebug:[mFullDebug state]==NSOnState?YES:NO];
+    [tOperation setNoVerify:[mNoVerify state]==NSOnState?YES:NO];
+    [tOperation setEraseBeforeUpload:[mEraseBeforeUpload state]==NSOnState?YES:NO];
     [gQueue addOperation:tOperation];
 }
 
@@ -401,7 +337,7 @@ AppDelegate *app = nil;
 
 - (void)putError:(NSString*)msg
 {
-    if (showLog) {
+    if ([mShowLog state] == NSOnState) {
         [self putMsg:@"** "];
         [self putMsg:msg];
     }
@@ -446,6 +382,16 @@ AppDelegate *app = nil;
     NSRunAlertPanel(NSLocalizedString(@"exception1",@""),
                                NSLocalizedString(@"exception2",@""),
                                NSLocalizedString(@"OK",@""),nil,nil);
+}
+
+- (BOOL)showLog
+{
+    return ([mShowLog state] == NSOnState)?YES:NO;
+}
+
+- (BOOL)fullDebug
+{
+    return ([mFullDebug state] == NSOnState)?YES:NO;
 }
 
 @end

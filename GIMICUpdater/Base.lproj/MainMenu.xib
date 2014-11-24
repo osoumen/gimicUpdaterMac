@@ -15,8 +15,12 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="mAllowDevelopFW" destination="LI8-U9-IHG" id="W45-x0-2aw"/>
+                <outlet property="mEraseBeforeUpload" destination="jxI-eI-cxA" id="xjn-w4-8Fj"/>
+                <outlet property="mFullDebug" destination="2Wd-p9-cUY" id="egH-k2-Nx9"/>
                 <outlet property="mMessageView" destination="B6e-Nc-bia" id="l4H-Mf-b4f"/>
+                <outlet property="mNoVerify" destination="ljV-d7-t8g" id="eBX-dr-lXJ"/>
                 <outlet property="mProgressBar" destination="1wr-Go-WGy" id="I4Z-0D-eZb"/>
+                <outlet property="mShowLog" destination="LEf-ZZ-rVg" id="yvV-T2-ybU"/>
                 <outlet property="mStartButton" destination="wHv-Zh-Fb0" id="N2C-B3-E8Z"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
@@ -631,25 +635,25 @@
                             <menuItem title="Show Log" alternate="YES" id="LEf-ZZ-rVg">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="toggleShowLog:" target="-1" id="f0R-ez-81J"/>
+                                    <binding destination="nmd-Gc-owO" name="value" keyPath="values.showlLog" id="pXQ-rw-BKn"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Full Debug" id="2Wd-p9-cUY">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="toggleFullDebug:" target="-1" id="3HE-Er-15j"/>
+                                    <binding destination="nmd-Gc-owO" name="value" keyPath="values.fullDebug" id="Z5q-xm-uJJ"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="No Verify" id="ljV-d7-t8g">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="toggleNoVerify:" target="-1" id="Dbo-D4-GEv"/>
+                                    <binding destination="nmd-Gc-owO" name="value" keyPath="values.noVerify" id="5mt-Md-woV"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Erase Before Upload" id="jxI-eI-cxA">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="toggleEraseBeforeUpload:" target="-1" id="lZv-Zf-FRN"/>
+                                    <binding destination="nmd-Gc-owO" name="value" keyPath="values.eraseBeforeUpload" id="GgP-oq-gBA"/>
                                 </connections>
                             </menuItem>
                         </items>

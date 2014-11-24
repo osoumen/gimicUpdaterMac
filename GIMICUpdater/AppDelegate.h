@@ -18,6 +18,10 @@
     IBOutlet NSProgressIndicator    *mProgressBar;
     IBOutlet NSButton               *mStartButton;
     IBOutlet NSButton               *mAllowDevelopFW;
+    IBOutlet NSMenuItem             *mShowLog;
+    IBOutlet NSMenuItem             *mFullDebug;
+    IBOutlet NSMenuItem             *mNoVerify;
+    IBOutlet NSMenuItem             *mEraseBeforeUpload;
     
     BOOL                            isFinished;     // 書き換えを完了したらYESになる
     BOOL                            isReady;
@@ -26,27 +30,18 @@
     
     NSString                        *portPath;      // VCPポートのパス
     NSURL                           *hexPath;       // ファームウェアのパス
-    BOOL                            showLog;
-    BOOL                            fullDebug;
-    BOOL                            noVerify;
-    BOOL                            eraseBeforeUpload;
     int                             btlVers;
     BOOL                            usingBuiltInHex;
 }
 @property (assign) IBOutlet NSWindow *window;
-@property BOOL                       showLog;
-@property BOOL                       fullDebug;
 @property (readonly) BOOL            isUpdating;
 @property BOOL                       isSyncFailed;
 
 - (IBAction)start:(id)sender;
 - (IBAction)onSelectOpen:(id)sender;
-
-- (IBAction)toggleShowLog:(id)sender;
-- (IBAction)toggleFullDebug:(id)sender;
-- (IBAction)toggleNoVerify:(id)sender;
-- (IBAction)toggleEraseBeforeUpload:(id)sender;
-
 - (IBAction)toggleDevelopFW:(id)sender;
+
+- (BOOL)showLog;
+- (BOOL)fullDebug;
 
 @end
