@@ -29,9 +29,28 @@ NSLock* _lock = nil;
     mFWPageUrl = [NSURL URLWithString:path];
 }
 
+- (void)setSecondFWPageUrl:(NSString*)path
+{
+    mSecondFWPageUrl = [NSURL URLWithString:path];
+}
+
 - (void)allowDevelopFW:(BOOL)allow
 {
     includeDevFW = allow;
+}
+
+- (NSData*)fetchDataUrl:(NSURL*)url
+                  error:(NSError **)error
+        timeoutInterval:(NSTimeInterval)timeoutInterval
+{
+    NSURLRequest *req = [NSURLRequest requestWithURL:url
+                                         cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                     timeoutInterval:timeoutInterval];
+    NSURLResponse *res;
+    NSData *data = [NSURLConnection sendSynchronousRequest:req
+                                         returningResponse:&res
+                                                     error:error];
+    return data;
 }
 
 - (void)main
@@ -39,14 +58,15 @@ NSLock* _lock = nil;
     NSNotificationCenter    *center;
     center = [NSNotificationCenter defaultCenter];
 
-    NSURLRequest *req = [NSURLRequest requestWithURL:mFWPageUrl
-                                         cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                     timeoutInterval:15.0];
-    NSError *error;
-    NSURLResponse *res;
-    NSData *data = [NSURLConnection sendSynchronousRequest:req
-                                         returningResponse:&res
-                                                     error:&error];
+    NSError *error = nil;
+    NSData *data = [self fetchDataUrl:mFWPageUrl error:&error timeoutInterval:15.0];
+    if (error) {
+        if (mSecondFWPageUrl) {
+            NSError *error2 = nil;
+            data = [self fetchDataUrl:mSecondFWPageUrl error:&error2 timeoutInterval:15.0];
+            error = error2;
+        }
+    }
     if (error) {
         NSLog(@"%@", error);
         [center postNotificationName:@"succeedFetchFirmWare" object:self userInfo:nil];
@@ -96,12 +116,9 @@ NSLock* _lock = nil;
     
     if (mFWUrl) {
         // 取得出来たならダウンロードを実行する
-        req = [NSURLRequest requestWithURL:[NSURL URLWithString:mFWUrl]
-                               cachePolicy:NSURLRequestUseProtocolCachePolicy
-                           timeoutInterval:30.0];
-        data = [NSURLConnection sendSynchronousRequest:req
-                                     returningResponse:&res
-                                                 error:&error];
+        data = [self fetchDataUrl:[NSURL URLWithString:mFWUrl]
+                            error:&error
+                  timeoutInterval:30.0];
         if (error) {
             NSLog(@"%@", error);
             [center postNotificationName:@"succeedFetchFirmWare" object:self userInfo:nil];

@@ -40,6 +40,7 @@ AppDelegate *app = nil;
     FetchFirmWareOperation *tOperation2 = [[FetchFirmWareOperation alloc] init];
     [tOperation2 allowDevelopFW:[mAllowDevelopFW state]?YES:NO];
     [tOperation2 setFWPageUrl:NSLocalizedString(@"updaterPageURL", @"")];
+    [tOperation2 setSecondFWPageUrl:NSLocalizedString(@"updaterPageURL2", @"")];
     [gQueue addOperation:tOperation2];
 
     // アップデート可能チェックを開始させる
@@ -184,6 +185,7 @@ AppDelegate *app = nil;
         FetchFirmWareOperation *tOperation2 = [[FetchFirmWareOperation alloc] init];
         [tOperation2 allowDevelopFW:[mAllowDevelopFW state]?YES:NO];
         [tOperation2 setFWPageUrl:NSLocalizedString(@"updaterPageURL", @"")];
+        [tOperation2 setSecondFWPageUrl:NSLocalizedString(@"updaterPageURL2", @"")];
         [gQueue addOperation:tOperation2];
     }
 }

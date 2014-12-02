@@ -11,10 +11,12 @@
 @interface FetchFirmWareOperation : NSOperation <NSURLConnectionDataDelegate>
 {
     NSURL       *mFWPageUrl;
+    NSURL       *mSecondFWPageUrl;
     NSString    *mFWUrl;
     BOOL        includeDevFW;
 }
 - (void)setFWPageUrl:(NSString*)path;
+- (void)setSecondFWPageUrl:(NSString*)path;
 - (void)allowDevelopFW:(BOOL)allow;
 
 @end
