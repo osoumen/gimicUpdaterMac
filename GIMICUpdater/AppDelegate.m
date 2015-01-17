@@ -257,8 +257,10 @@ AppDelegate *app = nil;
         [self printMessage:NSLocalizedString(@"detectUnknownMB", @"")];
     }
     [self putMsg:NSLocalizedString(@"readyToUpdate1", @"")];
-    [self putMsg:[[hexPath path] lastPathComponent]];
-    [self putMsg:NSLocalizedString(@"readyToUpdate2", @"")];
+    if (hexPath != nil) {
+        [self putMsg:[[hexPath path] lastPathComponent]];
+        [self putMsg:NSLocalizedString(@"readyToUpdate2", @"")];
+    }
 }
 
 // ファームウェアの取得に成功したときメインスレッドで実行される処理
@@ -279,6 +281,19 @@ AppDelegate *app = nil;
         if (hexPath == nil) {
             [NSApp terminate:self];
         }
+    }
+    if (isReady) {
+        if (btlVers == BTL_VERS_MB1) {
+            [self loadDefaultHexPath:0];
+        }
+        else if (btlVers == BTL_VERS_MB2) {
+            [self loadDefaultHexPath:1];
+        }
+        else {
+            [self loadDefaultHexPath:1];
+        }
+        [self putMsg:[[hexPath path] lastPathComponent]];
+        [self putMsg:NSLocalizedString(@"readyToUpdate2", @"")];
     }
 }
 
@@ -311,6 +326,12 @@ AppDelegate *app = nil;
 - (IBAction)start:(id)sender
 {
     if ([[NSFileManager defaultManager] fileExistsAtPath:portPath] == NO) {
+        return;
+    }
+    if (hexPath == nil) {
+        NSRunAlertPanel(NSLocalizedString(@"hexfile_notselected1",@""),
+                        NSLocalizedString(@"hexfile_notselected2",@""),
+                        NSLocalizedString(@"OK",@""),nil,nil);
         return;
     }
     

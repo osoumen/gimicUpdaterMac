@@ -42,3 +42,6 @@
 "failFetchFirmWare" = "Webから取得できませんでした。\nダウンロード済みのhexファイルを選択してください。";
 
 "selecthexfile" = "Select .hex File";
+
+"hexfile_notselected1" = "ファームウェアを取得中です。または、.hexファイルが選択されていません。";
+"hexfile_notselected2" = "取得が完了するのを待つか、.hexファイルを選択してください。";
