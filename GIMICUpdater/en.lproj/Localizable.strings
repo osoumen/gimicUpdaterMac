@@ -13,9 +13,9 @@
 
 "fwDownloadPath" = "/tmp";
 
-"updaterPageURL" = "http://gimic.jp/index.php?%e3%83%95%e3%82%a1%e3%83%bc%e3%83%a0%e3%82%a6%e3%82%a7%e3%82%a2%e3%83%80%e3%82%a6%e3%83%b3%e3%83%ad%e3%83%bc%e3%83%89";
+"updaterPageURL" = "https://gimic.jp/index.php?%e3%83%95%e3%82%a1%e3%83%bc%e3%83%a0%e3%82%a6%e3%82%a7%e3%82%a2%e3%83%80%e3%82%a6%e3%83%b3%e3%83%ad%e3%83%bc%e3%83%89";
 
-"updaterPageURL2" = "http://gimic.net/index.php?%e3%83%95%e3%82%a1%e3%83%bc%e3%83%a0%e3%82%a6%e3%82%a7%e3%82%a2%e3%83%80%e3%82%a6%e3%83%b3%e3%83%ad%e3%83%bc%e3%83%89";
+"updaterPageURL2" = "https://gimic.net/index.php?%e3%83%95%e3%82%a1%e3%83%bc%e3%83%a0%e3%82%a6%e3%82%a7%e3%82%a2%e3%83%80%e3%82%a6%e3%83%b3%e3%83%ad%e3%83%bc%e3%83%89";
 
 "preparingToUpdate" = "** 注意 **\nお持ちのG.I.M.I.Cの種別によって、アップデートの方法が異なります。必ず、アップデートするG.I.M.I.C１台のみを接続してください。\n\n初代マザーボードをアップデートする場合は、USBポート側から見てCPU基板上のスイッチを左側に切り替え、右側のUSBポートにUSBケーブルをPCと接続してください。\n\n2代目マザーボードシリーズをアップデートする場合は、電源ボタンを押しながらUSBケーブルをPCと接続してください。";
 "readyToUpdate1" = "G.I.M.I.Cを以下のファームウェアに更新します。\n";
