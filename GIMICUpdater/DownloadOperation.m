@@ -9,7 +9,7 @@
 #import "DownloadOperation.h"
 #include "lpc21isp.h"
 
-void EndWrite();
+void EndWrite(int ret);
 
 @implementation DownloadOperation
 
