@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -11,10 +12,9 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
-                <outlet property="mAllowDevelopFW" destination="LI8-U9-IHG" id="W45-x0-2aw"/>
                 <outlet property="mEraseBeforeUpload" destination="jxI-eI-cxA" id="xjn-w4-8Fj"/>
                 <outlet property="mFullDebug" destination="2Wd-p9-cUY" id="egH-k2-Nx9"/>
                 <outlet property="mMessageView" destination="B6e-Nc-bia" id="l4H-Mf-b4f"/>
@@ -697,19 +697,48 @@
                     </menu>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="139" y="260"/>
         </menu>
-        <window title="GIMICUpdater" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="QvC-M9-y7g">
+        <window title="GIMICUpdater" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="120" y="300" width="480" height="399"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="746"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="399"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWq-W9-ZI7">
+                        <rect key="frame" x="20" y="99" width="440" height="280"/>
+                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="875-Rb-I1J">
+                            <rect key="frame" x="1" y="1" width="423" height="278"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="panel" continuousSpellChecking="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="B6e-Nc-bia">
+                                    <rect key="frame" x="0.0" y="0.0" width="423" height="278"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="minSize" width="423" height="278"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                </textView>
+                            </subviews>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="HbP-Te-9F2">
+                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="6xz-XJ-vSA">
+                            <rect key="frame" x="424" y="1" width="15" height="278"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <progressIndicator displayedWhenStopped="NO" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="1wr-Go-WGy">
+                        <rect key="frame" x="20" y="19" width="440" height="20"/>
+                    </progressIndicator>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wHv-Zh-Fb0">
-                        <rect key="frame" x="168" y="75" width="144" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <rect key="frame" x="168" y="51" width="145" height="32"/>
                         <buttonCell key="cell" type="push" title="アップデート開始" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NK0-hT-oVu">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="AquaKana"/>
@@ -718,64 +747,20 @@
                             <action selector="start:" target="-1" id="29z-uc-pbM"/>
                         </connections>
                     </button>
-                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWq-W9-ZI7">
-                        <rect key="frame" x="20" y="123" width="440" height="256"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" id="875-Rb-I1J">
-                            <rect key="frame" x="1" y="1" width="423" height="254"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="B6e-Nc-bia">
-                                    <rect key="frame" x="0.0" y="0.0" width="423" height="254"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="423" height="254"/>
-                                    <size key="maxSize" width="463" height="10000000"/>
-                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="423" height="254"/>
-                                    <size key="maxSize" width="463" height="10000000"/>
-                                </textView>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="HbP-Te-9F2">
-                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="6xz-XJ-vSA">
-                            <rect key="frame" x="424" y="1" width="15" height="254"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
-                    <progressIndicator displayedWhenStopped="NO" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="1wr-Go-WGy">
-                        <rect key="frame" x="20" y="43" width="440" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </progressIndicator>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LI8-U9-IHG">
-                        <rect key="frame" x="18" y="18" width="269" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="開発版ファームウェアを自動取得に含める" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Nvm-2W-cBw">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" size="13" name="AquaKana"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="toggleDevelopFW:" target="Voe-Tx-rLC" id="6Be-sS-Q3B"/>
-                            <binding destination="nmd-Gc-owO" name="value" keyPath="values.allowDevelopFW" id="Gpg-90-V6L"/>
-                        </connections>
-                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="XWq-W9-ZI7" firstAttribute="trailing" secondItem="1wr-Go-WGy" secondAttribute="trailing" id="04x-xU-hcH"/>
-                    <constraint firstItem="1wr-Go-WGy" firstAttribute="centerX" secondItem="wHv-Zh-Fb0" secondAttribute="centerX" id="6du-zy-g3D"/>
-                    <constraint firstAttribute="bottom" secondItem="1wr-Go-WGy" secondAttribute="bottom" constant="44" id="75o-F0-cnE"/>
-                    <constraint firstItem="XWq-W9-ZI7" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" symbolic="YES" id="CxP-hX-SJl"/>
-                    <constraint firstItem="1wr-Go-WGy" firstAttribute="leading" secondItem="XWq-W9-ZI7" secondAttribute="leading" id="FQe-zO-mvN"/>
-                    <constraint firstAttribute="trailing" secondItem="XWq-W9-ZI7" secondAttribute="trailing" constant="20" symbolic="YES" id="KyB-hL-xc3"/>
-                    <constraint firstItem="wHv-Zh-Fb0" firstAttribute="top" secondItem="XWq-W9-ZI7" secondAttribute="bottom" constant="20" symbolic="YES" id="LyB-HN-eUn"/>
-                    <constraint firstItem="1wr-Go-WGy" firstAttribute="top" secondItem="wHv-Zh-Fb0" secondAttribute="bottom" constant="20" symbolic="YES" id="P9f-Oj-Dg3"/>
-                    <constraint firstItem="XWq-W9-ZI7" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="hfc-G9-JSU"/>
+                    <constraint firstAttribute="bottom" secondItem="1wr-Go-WGy" secondAttribute="bottom" constant="20" symbolic="YES" id="1qt-Lx-QBu"/>
+                    <constraint firstItem="1wr-Go-WGy" firstAttribute="top" secondItem="wHv-Zh-Fb0" secondAttribute="bottom" constant="20" symbolic="YES" id="6NH-4Y-2Mz"/>
+                    <constraint firstAttribute="trailing" secondItem="XWq-W9-ZI7" secondAttribute="trailing" constant="20" symbolic="YES" id="9Nz-AI-FRF"/>
+                    <constraint firstItem="XWq-W9-ZI7" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="HdA-9U-xYV"/>
+                    <constraint firstItem="XWq-W9-ZI7" firstAttribute="trailing" secondItem="1wr-Go-WGy" secondAttribute="trailing" id="MOz-m9-pRb"/>
+                    <constraint firstItem="wHv-Zh-Fb0" firstAttribute="centerX" secondItem="1wr-Go-WGy" secondAttribute="centerX" id="de5-BP-qML"/>
+                    <constraint firstItem="XWq-W9-ZI7" firstAttribute="leading" secondItem="1wr-Go-WGy" secondAttribute="leading" id="k4H-W0-dHc"/>
+                    <constraint firstItem="wHv-Zh-Fb0" firstAttribute="top" secondItem="XWq-W9-ZI7" secondAttribute="bottom" constant="20" symbolic="YES" id="mOI-BW-JEw"/>
+                    <constraint firstItem="XWq-W9-ZI7" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" symbolic="YES" id="pQg-9T-T6t"/>
                 </constraints>
             </view>
+            <point key="canvasLocation" x="703" y="151.5"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="nmd-Gc-owO"/>
     </objects>

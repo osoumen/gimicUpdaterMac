@@ -39,7 +39,6 @@
 
 - (IBAction)start:(id)sender;
 - (IBAction)onSelectOpen:(id)sender;
-- (IBAction)toggleDevelopFW:(id)sender;
 
 - (BOOL)showLog;
 - (BOOL)fullDebug;

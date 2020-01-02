@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "DownloadOperation.h"
 #import "PortChecker.h"
-#import "FetchFirmWareOperation.h"
 
 AppDelegate *app = nil;
 
@@ -36,13 +35,6 @@ AppDelegate *app = nil;
     
     hexPath = nil;
     
-    // 最新版FWを取得する
-    FetchFirmWareOperation *tOperation2 = [[FetchFirmWareOperation alloc] init];
-    [tOperation2 allowDevelopFW:[mAllowDevelopFW state]?YES:NO];
-    [tOperation2 setFWPageUrl:NSLocalizedString(@"updaterPageURL", @"")];
-    [tOperation2 setSecondFWPageUrl:NSLocalizedString(@"updaterPageURL2", @"")];
-    [gQueue addOperation:tOperation2];
-
     // アップデート可能チェックを開始させる
     NSNotificationCenter    *center;
     center = [NSNotificationCenter defaultCenter];
@@ -54,29 +46,25 @@ AppDelegate *app = nil;
                selector:@selector(disappearPortNotification:)
                    name:@"DisappearPort"
                  object:nil];
-    [center addObserver:self
-               selector:@selector(succeedFetchFirmWareNotification:)
-                   name:@"succeedFetchFirmWare"
-                 object:nil];
     PortChecker *tOperation = [[PortChecker alloc] init];
     [tOperation setPortPath:portPath];
     [gQueue addOperation:tOperation];
     
     // アップデート準備を促すメッセージを表示
-    [self printMessage:NSLocalizedString(@"preparingToUpdate", @"")];
-    
-    [self putMsg:NSLocalizedString(@"fetchingFirmWare", @"")];
+    [self printMessage:NSLocalizedString(@"readyToUpdate1", @"")];
+	[self putMsg:NSLocalizedString(@"fwVersion", @"")];
+    [self putMsg:NSLocalizedString(@"preparingToUpdate", @"")];
 }
 
 - (void)loadDefaultHexPath:(int)mbType
 {
-    //NSBundle *bundle = [NSBundle mainBundle];
-    //NSArray *paths = [bundle pathsForResourcesOfType:@"hex"
-    //                                     inDirectory:nil];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSError *error;
-    NSArray *paths = [fileManager contentsOfDirectoryAtPath:@"/tmp"
-                                                      error:&error];
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSArray *paths = [bundle pathsForResourcesOfType:@"hex"
+                                         inDirectory:nil];
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    NSError *error;
+//    NSArray *paths = [fileManager contentsOfDirectoryAtPath:@"/tmp"
+//                                                      error:&error];
     NSURL *mb1FWPath = nil;
     NSURL *mb2FWPath = nil;
     
@@ -86,7 +74,7 @@ AppDelegate *app = nil;
                                        options:NSRegularExpressionSearch];
         if (result.location != NSNotFound) {
             if (mb1FWPath == nil) {
-                mb1FWPath = [NSURL URLWithString:[NSString stringWithFormat:@"/tmp/%@",fwpath]
+                mb1FWPath = [NSURL URLWithString:[NSString stringWithFormat:@"%@",fwpath]
                                    relativeToURL:nil];
             }
         }
@@ -94,7 +82,7 @@ AppDelegate *app = nil;
                                options:NSRegularExpressionSearch];
         if (result.location != NSNotFound) {
             if (mb2FWPath == nil) {
-                mb2FWPath = [NSURL URLWithString:[NSString stringWithFormat:@"/tmp/%@",fwpath]
+                mb2FWPath = [NSURL URLWithString:[NSString stringWithFormat:@"%@",fwpath]
                                    relativeToURL:nil];
             }
         }
@@ -124,7 +112,7 @@ AppDelegate *app = nil;
     NSArray *allowedFileTypes = [NSArray arrayWithObjects:@"hex",nil,nil];
     [openPanel setAllowedFileTypes:allowedFileTypes];
     [openPanel setTitle:NSLocalizedString(@"selecthexfile", @"")];
-    NSInteger pressedButton = [openPanel runModal];
+    NSModalResponse pressedButton = [openPanel runModal];
     
     if ( pressedButton == NSOKButton ) {
         
@@ -179,17 +167,6 @@ AppDelegate *app = nil;
     return YES;
 }
 
-- (IBAction)toggleDevelopFW:(id)sender
-{
-    if (isReady == NO && isUpdating == NO) {
-        FetchFirmWareOperation *tOperation2 = [[FetchFirmWareOperation alloc] init];
-        [tOperation2 allowDevelopFW:[mAllowDevelopFW state]?YES:NO];
-        [tOperation2 setFWPageUrl:NSLocalizedString(@"updaterPageURL", @"")];
-        [tOperation2 setSecondFWPageUrl:NSLocalizedString(@"updaterPageURL2", @"")];
-        [gQueue addOperation:tOperation2];
-    }
-}
-
 // --- メニューアイテムの使用可否の処理
 - (BOOL) validateMenuItem:(NSMenuItem*)anItem
 {
@@ -207,13 +184,6 @@ AppDelegate *app = nil;
 {
     [app performSelectorOnMainThread:@selector(disappearPortProc:)
                           withObject:nil
-                       waitUntilDone:NO];
-}
-
-- (void)succeedFetchFirmWareNotification:(NSNotification*)notification
-{
-    [app performSelectorOnMainThread:@selector(succeedFetchFirmWareProc:)
-                          withObject:[[notification userInfo] valueForKey:@"fwName"]
                        waitUntilDone:NO];
 }
 
@@ -258,41 +228,12 @@ AppDelegate *app = nil;
     }
     [self putMsg:NSLocalizedString(@"readyToUpdate1", @"")];
     if (hexPath != nil) {
-        [self putMsg:[[hexPath path] lastPathComponent]];
-        [self putMsg:NSLocalizedString(@"readyToUpdate2", @"")];
-    }
-}
-
-// ファームウェアの取得に成功したときメインスレッドで実行される処理
-- (void)succeedFetchFirmWareProc:(NSString*)fwName
-{
-    if (fwName != nil) {
-        [self putMsg:NSLocalizedString(@"succeedFetchFirmWare", @"")];
-        [self putMsg:fwName];
-        [self putMsg:@"\n"];
-    }
-    else {
-        [self putMsg:NSLocalizedString(@"failFetchFirmWare", @"")];
-        
-        // ダウンロードに失敗した場合はファイル選択ダイアログを表示
-        if (hexPath == nil) {
-            [self onSelectOpen:self];
-        }
-        if (hexPath == nil) {
-            [NSApp terminate:self];
-        }
-    }
-    if (isReady) {
-        if (btlVers == BTL_VERS_MB1) {
-            [self loadDefaultHexPath:0];
-        }
-        else if (btlVers == BTL_VERS_MB2) {
-            [self loadDefaultHexPath:1];
-        }
-        else {
-            [self loadDefaultHexPath:1];
-        }
-        [self putMsg:[[hexPath path] lastPathComponent]];
+		if (usingBuiltInHex) {
+			[self putMsg:NSLocalizedString(@"fwVersion", @"")];
+		}
+		else {
+			[self putMsg:[[hexPath path] lastPathComponent]];
+		}
         [self putMsg:NSLocalizedString(@"readyToUpdate2", @"")];
     }
 }
@@ -447,13 +388,12 @@ void AppDebugPrintf(int level, const char *fmt, ...)
                 break;
             case 2:
             default:
-                if ([app interpretMsg:msg] || (app.fullDebug == YES)) {
-                    if (app.showLog) {
-                        if ((pTemp[0] != '.' && pTemp[0] != '|') || (app.fullDebug == YES)) {
-                            [app performSelectorOnMainThread:@selector(putMsg:) withObject:msg waitUntilDone:NO];
-                        }
-                    }
-                }
+				[app performSelectorOnMainThread:@selector(interpretMsg:) withObject:msg waitUntilDone:YES];
+				if (app.showLog) {
+					if ((pTemp[0] != '.' && pTemp[0] != '|') || (app.fullDebug == YES)) {
+						[app performSelectorOnMainThread:@selector(putMsg:) withObject:msg waitUntilDone:NO];
+					}
+				}
                 break;
         }
         va_end(ap);
