@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F5148E35295DD8C100BDE54D /* MB2_MB2LT_FW_MIDI_20221229.hex in Resources */ = {isa = PBXBuildFile; fileRef = F5148E33295DD8C100BDE54D /* MB2_MB2LT_FW_MIDI_20221229.hex */; };
-		F5148E36295DD8C100BDE54D /* MB1_FW_MIDI_20221229.hex in Resources */ = {isa = PBXBuildFile; fileRef = F5148E34295DD8C100BDE54D /* MB1_FW_MIDI_20221229.hex */; };
 		F51A5ACA19E2C67D00F4A6C0 /* PortChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = F51A5AC919E2C67D00F4A6C0 /* PortChecker.m */; };
 		F51A5ACD19E2DE9600F4A6C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51A5ACB19E2DE9600F4A6C0 /* Localizable.strings */; };
+		F5310FD029A90476005CE702 /* MB1_FW_20230223.hex in Resources */ = {isa = PBXBuildFile; fileRef = F5310FCE29A90475005CE702 /* MB1_FW_20230223.hex */; };
+		F5310FD129A90476005CE702 /* MB2_MB2LT_FW_20230223.hex in Resources */ = {isa = PBXBuildFile; fileRef = F5310FCF29A90476005CE702 /* MB2_MB2LT_FW_20230223.hex */; };
 		F5670C5019DD8D7300FA3D79 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5670C4F19DD8D7300FA3D79 /* Cocoa.framework */; };
 		F5670C5A19DD8D7300FA3D79 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5670C5819DD8D7300FA3D79 /* InfoPlist.strings */; };
 		F5670C5C19DD8D7300FA3D79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5670C5B19DD8D7300FA3D79 /* main.m */; };
@@ -26,12 +26,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F5148E33295DD8C100BDE54D /* MB2_MB2LT_FW_MIDI_20221229.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MB2_MB2LT_FW_MIDI_20221229.hex; sourceTree = "<group>"; };
-		F5148E34295DD8C100BDE54D /* MB1_FW_MIDI_20221229.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MB1_FW_MIDI_20221229.hex; sourceTree = "<group>"; };
 		F51A5AC819E2C67D00F4A6C0 /* PortChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortChecker.h; sourceTree = "<group>"; };
 		F51A5AC919E2C67D00F4A6C0 /* PortChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortChecker.m; sourceTree = "<group>"; };
 		F527A53D19DDA9AA002DFE7C /* DownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadOperation.h; sourceTree = "<group>"; };
 		F527A53E19DDA9AA002DFE7C /* DownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadOperation.m; sourceTree = "<group>"; };
+		F5310FCE29A90475005CE702 /* MB1_FW_20230223.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MB1_FW_20230223.hex; sourceTree = "<group>"; };
+		F5310FCF29A90476005CE702 /* MB2_MB2LT_FW_20230223.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MB2_MB2LT_FW_20230223.hex; sourceTree = "<group>"; };
 		F5670C4C19DD8D7300FA3D79 /* GIMICUpdater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIMICUpdater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5670C4F19DD8D7300FA3D79 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F5670C5219DD8D7300FA3D79 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -127,8 +127,8 @@
 		F5670C5619DD8D7300FA3D79 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F5148E34295DD8C100BDE54D /* MB1_FW_MIDI_20221229.hex */,
-				F5148E33295DD8C100BDE54D /* MB2_MB2LT_FW_MIDI_20221229.hex */,
+				F5310FCE29A90475005CE702 /* MB1_FW_20230223.hex */,
+				F5310FCF29A90476005CE702 /* MB2_MB2LT_FW_20230223.hex */,
 				F5670C5719DD8D7300FA3D79 /* GIMICUpdater-Info.plist */,
 				F5670C5819DD8D7300FA3D79 /* InfoPlist.strings */,
 				F5670C5B19DD8D7300FA3D79 /* main.m */,
@@ -208,11 +208,11 @@
 			files = (
 				F51A5ACD19E2DE9600F4A6C0 /* Localizable.strings in Resources */,
 				F5670C5A19DD8D7300FA3D79 /* InfoPlist.strings in Resources */,
-				F5148E35295DD8C100BDE54D /* MB2_MB2LT_FW_MIDI_20221229.hex in Resources */,
 				F5670C6819DD8D7300FA3D79 /* Images.xcassets in Resources */,
 				F5670C6019DD8D7300FA3D79 /* Credits.rtf in Resources */,
-				F5148E36295DD8C100BDE54D /* MB1_FW_MIDI_20221229.hex in Resources */,
 				F5670C6619DD8D7300FA3D79 /* MainMenu.xib in Resources */,
+				F5310FD129A90476005CE702 /* MB2_MB2LT_FW_20230223.hex in Resources */,
+				F5310FD029A90476005CE702 /* MB1_FW_20230223.hex in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
