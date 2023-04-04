@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F5024D2829D977A90078102F /* MB2_MB2LT_FW_MIDI_20230402.hex in Resources */ = {isa = PBXBuildFile; fileRef = F5024D2629D977A90078102F /* MB2_MB2LT_FW_MIDI_20230402.hex */; };
-		F5024D2929D977A90078102F /* MB1_FW_MIDI_20230402.hex in Resources */ = {isa = PBXBuildFile; fileRef = F5024D2729D977A90078102F /* MB1_FW_MIDI_20230402.hex */; };
 		F51A5ACA19E2C67D00F4A6C0 /* PortChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = F51A5AC919E2C67D00F4A6C0 /* PortChecker.m */; };
 		F51A5ACD19E2DE9600F4A6C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51A5ACB19E2DE9600F4A6C0 /* Localizable.strings */; };
 		F5670C5019DD8D7300FA3D79 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5670C4F19DD8D7300FA3D79 /* Cocoa.framework */; };
@@ -23,11 +21,11 @@
 		F5670C8E19DD90DD00FA3D79 /* lpcprog.c in Sources */ = {isa = PBXBuildFile; fileRef = F5670C8819DD90DD00FA3D79 /* lpcprog.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F5670C8F19DD90DD00FA3D79 /* lpcterm.c in Sources */ = {isa = PBXBuildFile; fileRef = F5670C8A19DD90DD00FA3D79 /* lpcterm.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F58EB3EB23BDD23A001389A2 /* DownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F527A53E19DDA9AA002DFE7C /* DownloadOperation.m */; };
+		F5F0D3DC29DC863300D86D1D /* MB1_FW_MIDI_20230405.hex in Resources */ = {isa = PBXBuildFile; fileRef = F5F0D3DA29DC863200D86D1D /* MB1_FW_MIDI_20230405.hex */; };
+		F5F0D3DD29DC863300D86D1D /* MB2_MB2LT_FW_MIDI_20230405.hex in Resources */ = {isa = PBXBuildFile; fileRef = F5F0D3DB29DC863300D86D1D /* MB2_MB2LT_FW_MIDI_20230405.hex */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F5024D2629D977A90078102F /* MB2_MB2LT_FW_MIDI_20230402.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MB2_MB2LT_FW_MIDI_20230402.hex; sourceTree = "<group>"; };
-		F5024D2729D977A90078102F /* MB1_FW_MIDI_20230402.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MB1_FW_MIDI_20230402.hex; sourceTree = "<group>"; };
 		F51A5AC819E2C67D00F4A6C0 /* PortChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortChecker.h; sourceTree = "<group>"; };
 		F51A5AC919E2C67D00F4A6C0 /* PortChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortChecker.m; sourceTree = "<group>"; };
 		F527A53D19DDA9AA002DFE7C /* DownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadOperation.h; sourceTree = "<group>"; };
@@ -56,6 +54,8 @@
 		F58EB3EE23BDD7D7001389A2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F58EB3EF23BDD7D7001389A2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F58EB3F223BDD884001389A2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/Credits.rtf; sourceTree = "<group>"; };
+		F5F0D3DA29DC863200D86D1D /* MB1_FW_MIDI_20230405.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MB1_FW_MIDI_20230405.hex; sourceTree = "<group>"; };
+		F5F0D3DB29DC863300D86D1D /* MB2_MB2LT_FW_MIDI_20230405.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MB2_MB2LT_FW_MIDI_20230405.hex; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,8 +127,8 @@
 		F5670C5619DD8D7300FA3D79 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F5024D2729D977A90078102F /* MB1_FW_MIDI_20230402.hex */,
-				F5024D2629D977A90078102F /* MB2_MB2LT_FW_MIDI_20230402.hex */,
+				F5F0D3DA29DC863200D86D1D /* MB1_FW_MIDI_20230405.hex */,
+				F5F0D3DB29DC863300D86D1D /* MB2_MB2LT_FW_MIDI_20230405.hex */,
 				F5670C5719DD8D7300FA3D79 /* GIMICUpdater-Info.plist */,
 				F5670C5819DD8D7300FA3D79 /* InfoPlist.strings */,
 				F5670C5B19DD8D7300FA3D79 /* main.m */,
@@ -206,13 +206,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5F0D3DC29DC863300D86D1D /* MB1_FW_MIDI_20230405.hex in Resources */,
+				F5F0D3DD29DC863300D86D1D /* MB2_MB2LT_FW_MIDI_20230405.hex in Resources */,
 				F51A5ACD19E2DE9600F4A6C0 /* Localizable.strings in Resources */,
 				F5670C5A19DD8D7300FA3D79 /* InfoPlist.strings in Resources */,
 				F5670C6819DD8D7300FA3D79 /* Images.xcassets in Resources */,
-				F5024D2829D977A90078102F /* MB2_MB2LT_FW_MIDI_20230402.hex in Resources */,
 				F5670C6019DD8D7300FA3D79 /* Credits.rtf in Resources */,
 				F5670C6619DD8D7300FA3D79 /* MainMenu.xib in Resources */,
-				F5024D2929D977A90078102F /* MB1_FW_MIDI_20230402.hex in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
